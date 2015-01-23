@@ -15,8 +15,13 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+	
+	private static InputManager IM;
+	private static MotorControl MC;
+	
     public void robotInit() {
-
+    	IM = new InputManager();
+    	MC = new MotorControl();
     }
 
     /**
@@ -30,6 +35,8 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	
+    	MC.DriveMec(IM.getFinalAxis());
         
     }
     

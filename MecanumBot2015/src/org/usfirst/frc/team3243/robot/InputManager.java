@@ -7,7 +7,7 @@ public class InputManager extends Robot{
 		
 		protected static Joystick ps2controller;//our controller
 		//initializes the controller
-		public void init() {
+		public InputManager() {
 			
 			ps2controller = new Joystick(1);
 			//rampUpNum = int
@@ -19,7 +19,7 @@ public class InputManager extends Robot{
 		 * @return
 		 */
 		public static double [] getFinalAxis(){
-			return ((getAxisValue()));
+			return (ramp(getAxisValue()));
 			//three things happen in this class.
 			//1)you get axis values
 			//2)then you deadzone the values
@@ -49,6 +49,13 @@ public class InputManager extends Robot{
 				}
 			}
 			return axis;
+		}
+		
+		public static double[] ramp(double[] axis){
+			for(byte x = 0; x < 3 ; x++){
+				axis[x] = (0.6667 * (Math.pow(axis[x], 3))+(0.333 * axis[x]));
+			}
+			return (axis);
 		}
 
 	}
