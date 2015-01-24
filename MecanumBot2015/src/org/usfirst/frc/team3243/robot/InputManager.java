@@ -18,7 +18,7 @@ public class InputManager extends Robot{
 		 * It retrieves the getAxisValue class's values, deadzones, and then it calls the ramp method, which regresses it to be a cubu=ic function rather than a line
 		 * @return
 		 */
-		public static double [] getFinalAxis(){
+		public double [] getFinalAxis(){
 			return (ramp(getAxisValue()));
 			//three things happen in this class.
 			//1)you get axis values

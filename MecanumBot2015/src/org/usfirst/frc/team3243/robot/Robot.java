@@ -22,6 +22,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	IM = new InputManager();
     	MC = new MotorControl();
+   
     }
 
     /**
