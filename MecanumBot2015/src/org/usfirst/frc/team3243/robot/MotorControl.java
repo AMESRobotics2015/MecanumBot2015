@@ -15,7 +15,7 @@ public class MotorControl {
 	
 	public void DriveMec(double[] axis){
 		
-		drv.mecanumDrive_Polar(magnitude, direction, rotation);
+		drv.mecanumDrive_Cartesian(axis[1], axis[0], axis[2], gyroAngle);
 		
 	}
 
