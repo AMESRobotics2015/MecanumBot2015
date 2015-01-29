@@ -19,7 +19,8 @@ public class MotorControl {
 	
 	public void DriveMec(double[] axis){
 	
-		drv.mecanumDrive_Cartesian(axis[1], axis[0], axis[2], 0);
+		drv.mecanumDrive_Cartesian(axis[1], axis[0], axis[2], S.readgy());
+		S	ystem.out.println(S.readgy());
 		
 	}
 
