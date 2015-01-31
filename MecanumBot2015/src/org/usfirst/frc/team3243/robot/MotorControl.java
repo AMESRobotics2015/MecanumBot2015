@@ -39,5 +39,8 @@ public class MotorControl {
 			solenoid2.set(Relay.Value.kForward);
 		}
 	}
+	public void Elevate(double[] elev){
+		elevator.set(elev[0]);
+	}
 
 }

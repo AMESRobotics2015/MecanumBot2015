@@ -81,10 +81,10 @@ public class InputManager extends Robot{
 			}
 			return solenoidInput;//return the array
 		}
-		public static double[] getGameControllerAxis(){
+		public static double[] elevatorInput(){
 			gameaxis[0] = gameController.getRawAxis(3);//y axis 
-			gameaxis[1] = gameController.getRawAxis(2);//x axis
-			gameaxis = deadZone(axis);//transforms the array to deadzone to round values as necessary (ex. -0.03 to 0)
+			//gameaxis[1] = gameController.getRawAxis(2);//x axis -- we don't need this...
+			gameaxis = ramp(deadZone(gameaxis));//transforms the array to deadzone to round values as necessary (ex. -0.03 to 0)
 			return gameaxis;
 		}
 

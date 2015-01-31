@@ -40,6 +40,7 @@ public class Robot extends IterativeRobot {
     	MC.DriveMec(IM.getFinalAxis());//in order to drive
     	IM.grabber();
         MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
+        MC.Elevate(IM.elevatorInput());
     }
     
     /**
