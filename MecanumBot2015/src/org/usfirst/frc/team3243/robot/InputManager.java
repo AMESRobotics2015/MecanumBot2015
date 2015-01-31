@@ -66,10 +66,12 @@ public class InputManager extends Robot{
 		}
 		public void grabber(){
 			if(open.get() == true){
-				//Turn on solenoids
+				solenoid1.set(Relay.Value.kForward);
+				solenoid2.set(Relay.Value.kOff);
 			}
 			if(close.get() == true){
-				//turn off solenoids
+				solenoid1.set(Relay.Value.kOff);
+				solenoid2.set(Relay.Value.kForward);
 			}
 		}
 
