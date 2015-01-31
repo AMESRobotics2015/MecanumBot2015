@@ -5,15 +5,15 @@ import edu.wpi.first.wpilibj.*;
 public class MotorControl {
 	
 	//Create Motor objects here.
-	protected static RobotDrive drv;
-	private static Sensors S;
-	protected static double angle;
-	protected static Victor elevator;
-	protected static Relay solenoid1, solenoid2;
+	protected static RobotDrive drv;//creates an instance of the frc class RobotDrive called drv
+	private static Sensors S;//instance of the class Sensors
+	protected static double angle;//angle
+	protected static Victor elevator;//motor in charge of elevator
+	protected static Relay solenoid1, solenoid2;//solenoid motors
 	
 	public MotorControl(){
 		
-		drv = new RobotDrive(0,1,2,3);
+		drv = new RobotDrive(0,1,2,3);//constructor 
 		S = new Sensors();
 		angle = S.readgy();
 		elevator = new Victor(4);
