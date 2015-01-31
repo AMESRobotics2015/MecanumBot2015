@@ -8,12 +8,17 @@ public class MotorControl {
 	protected static RobotDrive drv;
 	private static Sensors S;
 	protected static double angle;
+	protected static Victor elevator;
+	protected static Relay solenoid1, solenoid2;
 	
 	public MotorControl(){
 		
 		drv = new RobotDrive(0,1,2,3);
 		S = new Sensors();
 		angle = S.readgy();
+		elevator = new Victor(4);
+		solenoid1 = new Relay(5);
+		solenoid2 = new Relay(6);
 		
 	}
 	

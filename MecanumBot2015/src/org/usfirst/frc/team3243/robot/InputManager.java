@@ -6,10 +6,16 @@ public class InputManager extends Robot{
 		static double[] axis = new double [4];//holds the input value from our left/right controllers
 		
 		protected static Joystick ps2controller;//our controller
+		protected static Joystick gameController;
+		protected static JoystickButton open;
+		protected static JoystickButton close;
 		//initializes the controller
 		public InputManager() {
 			
 			ps2controller = new Joystick(1);
+			gameController = new Joystick(2);
+			open = new JoystickButton(gameController, 2);
+			close = new JoystickButton(gameController, 3);
 			//rampUpNum = int
 			
 		}
@@ -31,6 +37,7 @@ public class InputManager extends Robot{
 			axis[0] = ps2controller.getRawAxis(1);//y axis 
 			axis[1] = ps2controller.getRawAxis(0);//x axis
 			axis[2] = ps2controller.getRawAxis(2);//pivioting
+			axis[3] = gameController.getRawAxis(1);
 			axis = deadZone(axis);//transforms the array to deadzone to round values as necessary (ex. -0.03 to 0)
 			return axis;
 			
@@ -56,6 +63,14 @@ public class InputManager extends Robot{
 				axis[x] = (0.6667 * (Math.pow(axis[x], 3))+(0.333 * axis[x]));
 			}
 			return (axis);
+		}
+		public void grabber(){
+			if(open.get() == true){
+				//Turn on solenoids
+			}
+			if(close.get() == true){
+				//turn off solenoids
+			}
 		}
 
 	}
