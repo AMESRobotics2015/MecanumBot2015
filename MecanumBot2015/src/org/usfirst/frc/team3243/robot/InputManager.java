@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class InputManager extends Robot{
 		static double[] axis = new double [4];//holds the input value from our left/right controllers
 		static double[] solenoidInput = new double [2];//holds input for the solenoid motors
+		static double[] gameaxis = new double [2];
 		protected static Joystick ps2controller;//our controller
 		protected static Joystick gameController;
 		protected static JoystickButton open;
@@ -75,6 +76,12 @@ public class InputManager extends Robot{
 				solenoid1.set(Relay.Value.kOff);
 				solenoid2.set(Relay.Value.kForward);
 			}
+		}
+		public static double[] getGameControllerAxis(){
+			gameaxis[0] = gameController.getRawAxis(3);//y axis 
+			gameaxis[1] = gameController.getRawAxis(2);//x axis
+			gameaxis = deadZone(axis);//transforms the array to deadzone to round values as necessary (ex. -0.03 to 0)
+			return gameaxis;
 		}
 
 	}
