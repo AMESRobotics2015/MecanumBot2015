@@ -20,8 +20,8 @@ public class Robot extends IterativeRobot {
 	private static MotorControl MC;
 	
     public void robotInit() {
-    	IM = new InputManager();
-    	MC = new MotorControl();
+    	IM = new InputManager();//IM is the master instance of input manager
+    	MC = new MotorControl();//MC is the master instance of motor control
    
     }
 
@@ -37,9 +37,9 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	
-    	MC.DriveMec(IM.getFinalAxis());
+    	MC.DriveMec(IM.getFinalAxis());//in order to drive
     	IM.grabber();
-        
+        MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
     }
     
     /**

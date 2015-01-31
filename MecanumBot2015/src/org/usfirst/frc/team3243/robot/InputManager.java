@@ -65,16 +65,20 @@ public class InputManager extends Robot{
 			}
 			return (axis);
 		}
-		public void grabber(){
-			if(open.get() == true){
-				solenoidInput
+		public static double[] grabber(){
+			if(open.get() == true){//if open or close is pressed store info into an array with respective information
+				solenoidInput[0]= 1;
+				solenoidInput[1] = 0;
 				//solenoid1.set(Relay.Value.kForward);
 				//solenoid2.set(Relay.Value.kOff);
 			}
 			if(close.get() == true){
-				solenoid1.set(Relay.Value.kOff);
-				solenoid2.set(Relay.Value.kForward);
+				solenoidInput[0] = 0;
+				solenoidInput[1] = 1;
+				//solenoid1.set(Relay.Value.kOff);
+				//solenoid2.set(Relay.Value.kForward);
 			}
+			return solenoidInput;//return the array
 		}
 
 	}
