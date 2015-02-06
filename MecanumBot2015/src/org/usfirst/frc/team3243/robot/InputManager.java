@@ -14,8 +14,8 @@ public class InputManager extends Robot{
 		//initializes the controller
 		public InputManager() {
 			
-			ps2controller = new Joystick(1);
-			gameController = new Joystick(2);
+			ps2controller = new Joystick(0);
+			gameController = new Joystick(1);
 			open = new JoystickButton(gameController, 2);
 			close = new JoystickButton(gameController, 3);
 			//rampUpNum = int
@@ -27,17 +27,20 @@ public class InputManager extends Robot{
 		 * @return
 		 */
 		
-		public double [] getFinalAxis(){
-			return (ramp(gyroCompensate(getAxisValue(), gyro)));
+		public double [] getFinalAxis(double gyro){
+			return (ramp(adjustGetAngle(gyro)));
 			//three things happen in this class.
 			//1)you get axis values
 			//2)then you deadzone the values
 			//3) You transform the deadzoned values into a cubic equation
 		}
 		
-		public double [] gyroCompensate(double axis[], double angle){
+		public double [] adjustGetAngle(double angle){
 			double controllerangle = 0;
 			double mag;
+			
+			axis[0] = ps2controller.getRawAxis(3);// y axis
+			axis[1] = ps2controller.getRawAxis(2);// x axis
 			
 			if(axis[1] < 0){
 				controllerangle = Math.PI + Math.atan(axis[0]/axis[1]);//get the angle that the joystick is pointing facing, in case the angle is in the second or third quadrant
@@ -49,22 +52,23 @@ public class InputManager extends Robot{
 			
 			axis[1] = mag*Math.cos(angle+controllerangle); // using the equation kole gave where our final inputs include MAGNITUDE
 			axis[0] = mag*Math.sin(angle+controllerangle); 
-			
+			axis[3] = ps2controller.getRawAxis(0);
+			deadZone(axis);
 			return axis;
 		}
-		
+		/*
 		public static double[] getAxisValue(){
 			
 			axis[0] = ps2controller.getRawAxis(1);//y axis 
 			axis[1] = ps2controller.getRawAxis(0);//x axis
 			axis[2] = ps2controller.getRawAxis(2);//pivioting
-			axis[3] = gameController.getRawAxis(1);
+			//axis[3] = gameController.getRawAxis(1);
 			axis = deadZone(axis);//transforms the array to deadzone to round values as necessary (ex. -0.03 to 0)
 			return axis;
 			
 			
 		}
-		
+		*/
 		/**
 		 * transforms the array to deadzone to round values as necessary (ex. 0.02 to 0)
 		 * @param axis
@@ -96,6 +100,7 @@ public class InputManager extends Robot{
 			}
 			return solenoidInput;//return the array
 		}
+		
 		public static double[] elevatorInput(){
 			gameaxis[0] = gameController.getRawAxis(3);//y axis 
 			//gameaxis[1] = gameController.getRawAxis(2);//x axis -- we don't need this...

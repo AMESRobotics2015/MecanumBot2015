@@ -9,7 +9,7 @@ public class Sensors {
 
 	public Sensors(){
 		
-		G = new Gyro(3);//port of the gyro
+		G = new Gyro(0);//port of the gyro
 		cam = new AxisCamera("10.32.43.9");//ip adress of the axis camera 
 	}
 
