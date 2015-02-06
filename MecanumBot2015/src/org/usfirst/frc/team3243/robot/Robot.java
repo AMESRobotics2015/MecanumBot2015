@@ -18,10 +18,12 @@ public class Robot extends IterativeRobot {
 	
 	private static InputManager IM;
 	private static MotorControl MC;
+	private static Sensors S;
 	
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
     	MC = new MotorControl();//MC is the master instance of motor control
+    	S = new Sensors(); //S is the master instance of Sensors
    
     }
 
@@ -36,8 +38,8 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	
-    	MC.DriveMec(IM.getFinalAxis());//in order to drive
+    	double gyangle = S.readgy();
+    	MC.DriveMec(IM.getFinalAxis(gyangle));//in order to drive
     	IM.grabber();
         MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
         MC.Elevate(IM.elevatorInput());

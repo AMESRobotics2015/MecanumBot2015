@@ -26,12 +26,31 @@ public class InputManager extends Robot{
 		 * It retrieves the getAxisValue class's values, deadzones, and then it calls the ramp method, which regresses it to be a cubu=ic function rather than a line
 		 * @return
 		 */
+		
 		public double [] getFinalAxis(){
-			return (ramp(getAxisValue()));
+			return (ramp(gyroCompensate(getAxisValue(), gyro)));
 			//three things happen in this class.
 			//1)you get axis values
 			//2)then you deadzone the values
 			//3) You transform the deadzoned values into a cubic equation
+		}
+		
+		public double [] gyroCompensate(double axis[], double angle){
+			double controllerangle = 0;
+			double mag;
+			
+			if(axis[1] < 0){
+				controllerangle = Math.PI + Math.atan(axis[0]/axis[1]);//get the angle that the joystick is pointing facing, in case the angle is in the second or third quadrant
+			}else{
+				controllerangle = Math.atan(axis[0]/axis[1]);//get angle if it's in the first or fourth quadrant
+			}
+			
+			mag = Math.sqrt(Math.pow(axis[0], 2)*Math.pow(axis[1], 2));
+			
+			axis[1] = mag*Math.cos(angle+controllerangle); // using the equation kole gave where our final inputs include MAGNITUDE
+			axis[0] = mag*Math.sin(angle+controllerangle); 
+			
+			return axis;
 		}
 		
 		public static double[] getAxisValue(){

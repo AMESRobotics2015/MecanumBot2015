@@ -12,7 +12,7 @@ public class MotorControl {
 	protected static  Solenoid solenoid1, solenoid2;//solenoid motors
 	//protected static Talon topleft, topright, bottomleft, bottomright;
 	
-	static double[] drv= new double[4];
+	static double[] drive= new double[4];
 	
 	public MotorControl(){
 		
@@ -33,20 +33,20 @@ public class MotorControl {
 		
 		/*finaldrv(driv);
 		
-		topleft.set(drv[0]);
-		topright.set(drv[1]);
-		bottomleft.set(drv[2]);
-		bottomright.set(drv[3]);*/
+		topleft.set(drive[0]);
+		topright.set(drive[1]);
+		bottomleft.set(drive[2]);
+		bottomright.set(drive[3]);*/
 		drv.mecanumDrive_Cartesian(axis[1], axis[0], axis[2], S.readgy());//frc class to allow driving
 		System.out.println(angle);//to see if the gyro works
 		
 	}
 	/*public double[] finaldrv(double[] driv){
 		
-		drv[0] = (driv[0] * .75) - (driv[1] * .75) + (driv[2]);
-		drv[1] = ((driv[0] * .75) + driv[1] * .75 + (driv[2])) * .96;
-		drv[2] = -(driv[0] * .75) + (driv[1] * .75) + (driv[2]);
-		drv[3] = (-(driv[0] * .75) - (driv[1] * .75) + (driv[2])) * .96;
+		drive[0] = (driv[0] * .75) - (driv[1] * .75) + (driv[2]);
+		drive[1] = ((driv[0] * .75) + driv[1] * .75 + (driv[2])) * .96;
+		drive[2] = -(driv[0] * .75) + (driv[1] * .75) + (driv[2]);
+		drive[3] = (-(driv[0] * .75) - (driv[1] * .75) + (driv[2])) * .96;
 		return drv;
 		
 	}*/
