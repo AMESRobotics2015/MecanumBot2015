@@ -6,8 +6,8 @@ public class MotorControl {
 	
 	//Create Motor objects here.
 	protected static RobotDrive drv;//creates an instance of the frc class RobotDrive called drv
-	//private static Sensors S;//instance of the class Sensors
-	//protected static double angle;//angle
+	private static Sensors S;//instance of the class Sensors
+	protected static double angle;//angle
 	protected static Victor elevator;//motor in charge of elevator
 	protected static  Solenoid solenoid1, solenoid2;//solenoid motors
 	protected static Talon topleft, topright, bottomleft, bottomright;
@@ -21,8 +21,8 @@ public class MotorControl {
 		topright = new Talon(1);
 		bottomleft = new Talon(2);
 		bottomright = new Talon(3);
-		//S = new Sensors();//instance of sensors is created
-		//angle = S.readgy();//calls upon the lass readgy which is located in sensors
+		S = new Sensors();//instance of sensors is created
+		angle = S.readgy();//calls upon the lass readgy which is located in sensors
 		elevator = new Victor(4);
 		solenoid1 = new Solenoid(1);
 		solenoid2 = new Solenoid(2);
