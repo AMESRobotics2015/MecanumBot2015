@@ -70,14 +70,10 @@ public class InputManager extends Robot{
 			if(open.get() == true){//if open or close is pressed store info into an array with respective information
 				solenoidInput[0]= 1;
 				solenoidInput[1] = 0;
-				//solenoid1.set(Relay.Value.kForward);
-				//solenoid2.set(Relay.Value.kOff);
 			}
 			if(close.get() == true){
 				solenoidInput[0] = 0;
 				solenoidInput[1] = 1;
-				//solenoid1.set(Relay.Value.kOff);
-				//solenoid2.set(Relay.Value.kForward);
 			}
 			return solenoidInput;//return the array
 		}

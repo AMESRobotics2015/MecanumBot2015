@@ -9,7 +9,7 @@ public class MotorControl {
 	private static Sensors S;//instance of the class Sensors
 	protected static double angle;//angle
 	protected static Victor elevator;//motor in charge of elevator
-	protected static Relay solenoid1, solenoid2;//solenoid motors
+	protected static Solenoid solenoid1, solenoid2;//solenoid motors
 	
 	public MotorControl(){
 		
@@ -17,8 +17,8 @@ public class MotorControl {
 		S = new Sensors();//instance of sensors is created
 		angle = S.readgy();//calls upon the lass readgy which is located in sensors
 		elevator = new Victor(4);
-		solenoid1 = new Relay(5);
-		solenoid2 = new Relay(6);
+		solenoid1 = new Solenoid(1);
+		solenoid2 = new Solenoid(2);
 		
 	}
 	
@@ -30,13 +30,13 @@ public class MotorControl {
 	}
 	public void getGrabberMethod(double[] solenoidInput){//if open is pressed
 		if(solenoidInput[0] == 1 && solenoidInput[1] == 0){
-			solenoid1.set(Relay.Value.kForward);
-			solenoid2.set(Relay.Value.kOff);
+			solenoid1.set(true);
+			solenoid2.set(false);
 			
 		}
 		if (solenoidInput[1] == 0 && solenoidInput[1] == 1){//if close is pressed
-			solenoid1.set(Relay.Value.kOff);
-			solenoid2.set(Relay.Value.kForward);
+			solenoid1.set(false);
+			solenoid2.set(true);
 		}
 	}
 	public void Elevate(double[] elev){
