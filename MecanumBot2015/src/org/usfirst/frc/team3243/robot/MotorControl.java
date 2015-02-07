@@ -27,6 +27,7 @@ public class MotorControl {
 		elevator = new Victor(4);
 		solenoid1 = new Solenoid(1);
 		solenoid2 = new Solenoid(2);
+		comp = new Compressor(0);
 		
 		
 	}
@@ -67,6 +68,13 @@ public class MotorControl {
 		elevator.set(elev[0]);//Raises/lowers the elevator.
 		if (-0.1 < elev[0] && elev[0] <0.1){
 			//system break mechanical stop
+		}
+	}
+	public void Compress(){
+		if(comp.getPressureSwitchValue()==true && comp.enabled()){
+			comp.start();
+		}else if(comp.getPressureSwitchValue()==false){
+			comp.stop();
 		}
 	}
 	
