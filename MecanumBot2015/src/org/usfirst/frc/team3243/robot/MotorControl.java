@@ -31,7 +31,7 @@ public class MotorControl {
 	
 	public void DriveMec(double[] axis){
 		
-		finaldrv(axis);
+		//finaldrv(axis);
 		
 		//topleft.set(drive[0]);
 		//topright.set(drive[1]);

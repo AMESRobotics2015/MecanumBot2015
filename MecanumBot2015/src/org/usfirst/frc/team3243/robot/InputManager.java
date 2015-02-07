@@ -27,9 +27,9 @@ public class InputManager extends Robot{
 		 * @return
 		 */
 		
-		public double [] getFinalAxis(double gyro){
-			return (ramp(adjustGetAngle(gyro)));
-			//return (ramp(getAxisValue());
+		public double [] getFinalAxis(){//If we switch to FRC function take out the double in the function argument - If we use backup throw double Gyro in there.
+			//return (ramp(adjustGetAngle(gyro)));
+			return (ramp(getAxisValue()));
 			//three things happen in this class.
 			//1)you get axis values
 			//2)then you deadzone the values
