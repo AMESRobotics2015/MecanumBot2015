@@ -19,19 +19,24 @@ public class Robot extends IterativeRobot {
 	private static InputManager IM;
 	private static MotorControl MC;
 	private static Sensors S;
+	private static Recorder R;
+	private static Writer WR;
 	
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
     	MC = new MotorControl();//MC is the master instance of motor control
     	S = new Sensors(); //S is the master instance of Sensors
-   
+    	R = new Recorder();
+    	WR = new Writer();
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-
+    	//double gyangle = S.readgy();
+    	//MC.DriveMec(R.playBackDrive());
+    	//MC.getGrabberMethod(R.playBackGrabber
     }
 
     /**
@@ -44,6 +49,11 @@ public class Robot extends IterativeRobot {
     	//IM.grabber(); - I don't think we need that here.
         //MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
         //MC.Elevate(IM.elevatorInput());//sends input from joystick to elevator function in motor control.
+    	//R.getDriveData(IM.getFinalAxis(gyangle),InputManager.grabber(), InputManager.elevatorInput());
+		//if(Recorder.writeToFile){
+		//	WR.writeData(R);
+		//	WR.setCounter();
+	//	}
     }
     
     /**

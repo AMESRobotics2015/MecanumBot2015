@@ -85,7 +85,7 @@ public class Recorder implements java.io.Serializable {
 		}		
 		return playArray;
 		}
-		public double[] PlayBackElevator(){
+		public double[] playBackElevator(){
 			double[]playArray = new double[3];
 			if(playIncrement > this.ElevData.size()-1){//if it keeps reading larger than the size for any reason, this stops the robot
 				playArray[0]=0;
@@ -96,7 +96,7 @@ public class Recorder implements java.io.Serializable {
 			}	
 			return playArray;			
 		}
-		public double[] PlayBackGrabber(){
+		public double[] playBackGrabber(){
 			double[]playArray = new double[2];
 			if(playIncrement > this.GrabberData0.size()-1){//if it keeps reading larger than the size for any reason, this stops the robot
 				playArray[0]=0;
