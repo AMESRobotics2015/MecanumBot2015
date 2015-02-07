@@ -29,6 +29,7 @@ public class InputManager extends Robot{
 		
 		public double [] getFinalAxis(double gyro){
 			return (ramp(adjustGetAngle(gyro)));
+			//return (ramp(getAxisValue());
 			//three things happen in this class.
 			//1)you get axis values
 			//2)then you deadzone the values
@@ -57,7 +58,7 @@ public class InputManager extends Robot{
 			deadZone(axis);
 			return axis;
 		}
-		/*
+		
 		public static double[] getAxisValue(){
 			
 			axis[0] = ps2controller.getRawAxis(1);//y axis 
@@ -69,7 +70,7 @@ public class InputManager extends Robot{
 			
 			
 		}
-		*/
+		
 		/**
 		 * transforms the array to deadzone to round values as necessary (ex. 0.02 to 0)
 		 * @param axis

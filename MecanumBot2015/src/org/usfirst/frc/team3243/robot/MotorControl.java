@@ -18,9 +18,9 @@ public class MotorControl {
 		
 		drv = new RobotDrive(0,1,2,3);//constructor 
 		topleft = new Talon(0);
-		topright = new Talon(1);
-		bottomleft = new Talon(2);
-		bottomright = new Talon(3);
+		bottomleft = new Talon(1);
+		bottomright = new Talon(2);
+		topright = new Talon(3);
 		S = new Sensors();//instance of sensors is created
 		angle = S.readgy();//calls upon the lass readgy which is located in sensors
 		elevator = new Victor(4);
@@ -33,20 +33,20 @@ public class MotorControl {
 		
 		finaldrv(axis);
 		
-		topleft.set(drive[0]);
-		topright.set(drive[1]);
-		bottomleft.set(drive[2]);
-		bottomright.set(drive[3]);
+		//topleft.set(drive[0]);
+		//topright.set(drive[1]);
+		//bottomleft.set(drive[2]);
+		//bottomright.set(drive[3]);//This is our backup driving function.
 		drv.mecanumDrive_Cartesian(axis[1], axis[0], axis[2], S.readgy());//frc class to allow driving
 		//System.out.println(angle);//to see if the gyro works
 		
 	}
 	public double[] finaldrv(double[] driv){
 		
-		drive[0] = (driv[0] * .75) - (driv[1] * .75) + (driv[2]);
-		drive[1] = ((driv[0] * .75) + driv[1] * .75 + (driv[2])) * .96;
-		drive[2] = -(driv[0] * .75) + (driv[1] * .75) + (driv[2]);
-		drive[3] = (-(driv[0] * .75) - (driv[1] * .75) + (driv[2])) * .96;
+		drive[0] = (driv[0] * .75) + (driv[1] * .75) + (driv[2]);
+		drive[1] = (driv[0] * .75) - driv[1] * .75 + (driv[2]);
+		drive[2] = (driv[0] * .75) + (driv[1] * .75) - (driv[2]);
+		drive[3] = (driv[0] * .75) - (driv[1] * .75) - (driv[2]);
 		return drive;
 		
 	}
