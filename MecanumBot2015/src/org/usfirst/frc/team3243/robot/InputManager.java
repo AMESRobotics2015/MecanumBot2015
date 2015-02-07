@@ -14,8 +14,8 @@ public class InputManager extends Robot{
 		//initializes the controller
 		public InputManager() {
 			
-			ps2controller = new Joystick(0);
-			gameController = new Joystick(1);
+			ps2controller = new Joystick(0);//driving joystick
+			gameController = new Joystick(1);//gampiece joystick
 			open = new JoystickButton(gameController, 2);
 			close = new JoystickButton(gameController, 3);
 			//rampUpNum = int
@@ -27,9 +27,9 @@ public class InputManager extends Robot{
 		 * @return
 		 */
 		
-		public double [] getFinalAxis(){//If we switch to FRC function take out the double in the function argument - If we use backup throw double Gyro in there.
-			//return (ramp(adjustGetAngle(gyro)));
-			return (ramp(getAxisValue()));
+		public double [] getFinalAxis(double gyro){//If we switch to FRC function take out the double in the function argument - If we use backup throw double Gyro in there.
+			return (ramp(adjustGetAngle(gyro)));
+			//return (ramp(getAxisValue()));
 			//three things happen in this class.
 			//1)you get axis values
 			//2)then you deadzone the values
@@ -42,6 +42,8 @@ public class InputManager extends Robot{
 			
 			axis[0] = ps2controller.getRawAxis(3);// y axis
 			axis[1] = ps2controller.getRawAxis(2);// x axis
+			axis[3] = ps2controller.getRawAxis(0);//rotation.
+			deadZone(axis);//deadzones the values.
 		/*	
 			if(axis[1] < 0){
 				controllerangle = Math.PI + Math.atan(axis[0]/axis[1]);//get the angle that the joystick is pointing facing, in case the angle is in the second or third quadrant
@@ -49,13 +51,13 @@ public class InputManager extends Robot{
 				controllerangle = Math.atan(axis[0]/axis[1]);//get angle if it's in the first or fourth quadrant
 			}
 			*/
-			controllerangle = Math.atan2(axis[0],axis[1]);
-			mag = Math.sqrt(Math.pow(axis[0], 2)*Math.pow(axis[1], 2));
+			controllerangle = Math.atan2(axis[0],axis[1]);//agnle joystick is at
+			mag = Math.sqrt(Math.pow(axis[0], 2)*Math.pow(axis[1], 2));//find magnitude of controller
 			
 			axis[1] = mag*Math.cos(angle+controllerangle); // using the equation kole gave where our final inputs include MAGNITUDE
 			axis[0] = mag*Math.sin(angle+controllerangle); 
-			axis[3] = ps2controller.getRawAxis(0);
-			deadZone(axis);
+			
+			
 			return axis;
 		}
 		
@@ -87,7 +89,7 @@ public class InputManager extends Robot{
 		
 		public static double[] ramp(double[] axis){
 			for(byte x = 0; x < 3 ; x++){
-				axis[x] = (0.6667 * (Math.pow(axis[x], 3))+(0.333 * axis[x]));
+				axis[x] = (0.6667 * (Math.pow(axis[x], 3))+(0.333 * axis[x]));//ramps tthe function and returns it to getFinalAxis
 			}
 			return (axis);
 		}

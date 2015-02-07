@@ -31,13 +31,13 @@ public class MotorControl {
 	
 	public void DriveMec(double[] axis){
 		
-		//finaldrv(axis);
+		finaldrv(axis);
 		
-		//topleft.set(drive[0]);
-		//topright.set(drive[1]);
-		//bottomleft.set(drive[2]);
-		//bottomright.set(drive[3]);//This is our backup driving function.
-		drv.mecanumDrive_Cartesian(axis[1], axis[0], axis[2], S.readgy());//frc class to allow driving
+		topleft.set(drive[0]);
+		topright.set(drive[1]);
+		bottomleft.set(drive[2]);
+		bottomright.set(drive[3]);//This is our backup driving function.
+		//drv.mecanumDrive_Cartesian(axis[1], axis[0], axis[2], S.readgy());//frc class to allow driving
 		//System.out.println(angle);//to see if the gyro works
 		
 	}
@@ -46,7 +46,7 @@ public class MotorControl {
 		drive[0] = (driv[0] * .75) + (driv[1] * .75) + (driv[2]);
 		drive[1] = (driv[0] * .75) - driv[1] * .75 + (driv[2]);
 		drive[2] = (driv[0] * .75) + (driv[1] * .75) - (driv[2]);
-		drive[3] = (driv[0] * .75) - (driv[1] * .75) - (driv[2]);
+		drive[3] = (driv[0] * .75) - (driv[1] * .75) - (driv[2]);//This part of the function goes positive or negative based upon the movement each motor does in a given situation. Paper with where MArk worked this out should be with the project sheet.
 		return drive;
 		
 	}
@@ -62,7 +62,7 @@ public class MotorControl {
 		}
 	}
 	public void Elevate(double[] elev){
-		elevator.set(elev[0]);
+		elevator.set(elev[0]);//Raises/lowers the elevator.
 	}
 
 }
