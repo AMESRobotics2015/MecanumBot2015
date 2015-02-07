@@ -21,7 +21,7 @@ public class Writer implements java.io.Serializable{
 		         fileout.writeObject(r);//writes recorder object to file
 		         fileout.close();
 		         FileOut.close();
-		         RobotMap.writeToFile = false;
+		         Recorder.writeToFile = false;
 				++Recorder.counter;//increments # of recording
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block

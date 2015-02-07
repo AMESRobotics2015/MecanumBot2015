@@ -11,6 +11,7 @@ public class InputManager extends Robot{
 		protected static Joystick gameController;
 		protected static JoystickButton open;
 		protected static JoystickButton close;
+		protected static JoystickButton record;
 		//initializes the controller
 		public InputManager() {
 			
@@ -18,6 +19,7 @@ public class InputManager extends Robot{
 			gameController = new Joystick(1);//gampiece joystick
 			open = new JoystickButton(gameController, 2);
 			close = new JoystickButton(gameController, 3);
+			record = new JoystickButton(ps2controller, 4);
 			//rampUpNum = int
 			
 		}
@@ -110,6 +112,14 @@ public class InputManager extends Robot{
 			//gameaxis[1] = gameController.getRawAxis(2);//x axis -- we don't need this...
 			gameaxis = ramp(deadZone(gameaxis));//transforms the array to deadzone to round values as necessary (ex. -0.03 to 0)
 			return gameaxis;
+		}
+		public void record() {
+			if(record.get() == true){
+				Recorder.isRecording = true;
+				System.out.println("Successful button press");
+				Recorder.timerOn = true;
+			}
+			
 		}
 
 	}
