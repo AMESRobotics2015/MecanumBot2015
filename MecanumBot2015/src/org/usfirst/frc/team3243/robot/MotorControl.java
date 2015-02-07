@@ -11,6 +11,7 @@ public class MotorControl {
 	protected static Victor elevator;//motor in charge of elevator
 	protected static  Solenoid solenoid1, solenoid2;//solenoid motors
 	protected static Talon topleft, topright, bottomleft, bottomright;
+	protected static Compressor comp;
 	
 	static double[] drive= new double[4];
 	
@@ -26,6 +27,7 @@ public class MotorControl {
 		elevator = new Victor(4);
 		solenoid1 = new Solenoid(1);
 		solenoid2 = new Solenoid(2);
+		
 		
 	}
 	
@@ -63,6 +65,10 @@ public class MotorControl {
 	}
 	public void Elevate(double[] elev){
 		elevator.set(elev[0]);//Raises/lowers the elevator.
+		if (-0.1 < elev[0] && elev[0] <0.1){
+			//system break mechanical stop
+		}
 	}
-
+	
+	
 }
