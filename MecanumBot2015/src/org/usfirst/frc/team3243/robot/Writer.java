@@ -74,7 +74,7 @@ public class Writer implements java.io.Serializable{
 		FileOutputStream counterOut;
 		try {
 			outputCounter = Recorder.counter;
-			counterOut = new FileOutputStream("./Counter.JSON");
+			counterOut = new FileOutputStream("/home/lvuser/auto/Counter.JSON");
 	         ObjectOutputStream counterFile = new ObjectOutputStream(counterOut);
 	         counterFile.writeObject(outputCounter);
 	         counterFile.close();

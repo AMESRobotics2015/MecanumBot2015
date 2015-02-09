@@ -38,7 +38,7 @@ public class Recorder implements java.io.Serializable {
 		
 	}	
 	
-	public void getDriveData(double[] drive, double[] elevator, double[] solenoid){//gets data from joystick array
+	public void getData(double[] drive, double[] elevator, double[] solenoid){//gets data from joystick array
 		
 		IM.record();
 		if(clearData){//clears data if not already cleared
