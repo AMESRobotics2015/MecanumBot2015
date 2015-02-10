@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.RobotDrive.*;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class InputManager extends Robot{
+public class InputManager{
 		static double[] axis = new double [4];//holds the input value from our left/right controllers
 		static double[] solenoidInput = new double [2];//holds input for the solenoid motors
 		static double[] gameaxis = new double [2];

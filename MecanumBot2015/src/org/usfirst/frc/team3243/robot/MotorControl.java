@@ -17,13 +17,13 @@ public class MotorControl {
 	
 	public MotorControl(){
 		
-		drv = new RobotDrive(0,1,2,3);//constructor 
+		//drv = new RobotDrive(0,1,2,3);//constructor 
 		topleft = new Talon(0);
 		bottomleft = new Talon(1);
 		bottomright = new Talon(2);
 		topright = new Talon(3);
-		S = new Sensors();//instance of sensors is created
-		angle = S.readgy();//calls upon the lass readgy which is located in sensors
+		//S = new Sensors();//instance of sensors is created
+		//angle = S.readgy();//calls upon the lass readgy which is located in sensors
 		elevator = new Victor(4);
 		solenoid1 = new Solenoid(1);
 		solenoid2 = new Solenoid(2);
@@ -46,9 +46,9 @@ public class MotorControl {
 	}
 	public double[] finaldrv(double[] driv){
 		
-		drive[0] = (driv[0] * .75) + (driv[1] * .75) + (driv[2]);
-		drive[1] = (driv[0] * .75) - driv[1] * .75 + (driv[2]);
-		drive[2] = (driv[0] * .75) + (driv[1] * .75) - (driv[2]);
+		drive[0] = (driv[0] * .75) + (driv[1] * .75) - (driv[2]);
+		drive[1] = (driv[0] * .75) - (driv[1] * .75) + (driv[2]);
+		drive[2] = (driv[0] * .75) + (driv[1] * .75) + (driv[2]);
 		drive[3] = (driv[0] * .75) - (driv[1] * .75) - (driv[2]);//This part of the function goes positive or negative based upon the movement each motor does in a given situation. Paper with where MArk worked this out should be with the project sheet.
 		return drive;
 		

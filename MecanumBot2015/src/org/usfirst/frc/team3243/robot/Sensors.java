@@ -1,23 +1,20 @@
 package org.usfirst.frc.team3243.robot;
-import edu.wpi.first.wpilibj.Gyro;
-import edu.wpi.first.wpilibj.vision.AxisCamera;
-
+import edu.wpi.first.wpilibj.*;
 
 public class Sensors {
-	protected static AxisCamera cam;//declare our camera
-	protected static Gyro G;//our gyro
-
+	
+	protected static Gyro G;
+	
 	public Sensors(){
 		
-		G = new Gyro(0);//port of the gyro
-		cam = new AxisCamera("10.32.43.9");//ip adress of the axis camera 
-	}
-
-	public double readgy(){
+		G = new Gyro(0);
 		
-		double fin = G.getAngle();//frc class that allows us to get the angle
-		
-		return fin;
 	}
 	
+	public double readgy(){
+		double gyreading = G.getAngle()%360;//gyro can go higher than 360 degrees so we check for the remainder
+		gyreading = gyreading *Math.PI/180;
+		return gyreading;
+	}
+
 }
