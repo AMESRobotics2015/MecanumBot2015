@@ -9,16 +9,14 @@ public class InputManager{
 		static double[] gameaxis = new double [2];
 		protected static Joystick ps2controller;//our controller
 		protected static Joystick gameController;
-		protected static JoystickButton open;
-		protected static JoystickButton close;
 		protected static JoystickButton record;
 		//initializes the controller
 		public InputManager() {
 			
 			ps2controller = new Joystick(0);//driving joystick
 			gameController = new Joystick(1);//gampiece joystick
-			open = new JoystickButton(gameController, 2);
-			close = new JoystickButton(gameController, 3);
+			//open = new JoystickButton(gameController, 2);
+			//close = new JoystickButton(gameController, 3);
 			record = new JoystickButton(ps2controller, 4);
 			//rampUpNum = int
 			
@@ -46,15 +44,8 @@ public class InputManager{
 			axis[1] = ps2controller.getRawAxis(2);// x axis
 			axis[3] = ps2controller.getRawAxis(0);//rotation.
 			deadZone(axis);//deadzones the values.
-		/*	
-			if(axis[1] < 0){
-				controllerangle = Math.PI + Math.atan(axis[0]/axis[1]);//get the angle that the joystick is pointing facing, in case the angle is in the second or third quadrant
-			}else{
-				controllerangle = Math.atan(axis[0]/axis[1]);//get angle if it's in the first or fourth quadrant
-			}
-			*/
 			controllerangle = Math.atan2(axis[0],axis[1]);//agnle joystick is at
-			mag = Math.sqrt(Math.pow(axis[0], 2)*Math.pow(axis[1], 2));//find magnitude of controller
+			mag = Math.sqrt(Math.pow(axis[0], 2)+Math.pow(axis[1], 2));//find magnitude of controller
 			
 			axis[1] = mag*Math.cos(angle+controllerangle); // using the equation kole gave where our final inputs include MAGNITUDE
 			axis[0] = mag*Math.sin(angle+controllerangle); 
@@ -63,12 +54,19 @@ public class InputManager{
 			return axis;
 		}
 		
-		public static double[] getAxisValue(){
+		public double[] getAxisValue(){
 			
-			axis[0] = ps2controller.getRawAxis(1);//y axis 
-			axis[1] = ps2controller.getRawAxis(0);//x axis
-			axis[2] = ps2controller.getRawAxis(2);//pivioting
-			//axis[3] = gameController.getRawAxis(1);
+			if (RobotMap.AdamDrive){
+				axis[0] = ps2controller.getRawAxis(2);//y axis 
+				axis[1] = ps2controller.getRawAxis(3);//x axis
+				axis[2] = ps2controller.getRawAxis(0);//pivoting
+			}
+			else{
+				axis[0] = ps2controller.getRawAxis(0);//y axis 
+				axis[1] = ps2controller.getRawAxis(1);//x axis
+				axis[2] = ps2controller.getRawAxis(2);//pivoting
+			}
+			
 			axis = deadZone(axis);//transforms the array to deadzone to round values as necessary (ex. -0.03 to 0)
 			return axis;
 			
@@ -90,24 +88,24 @@ public class InputManager{
 		}
 		
 		public static double[] ramp(double[] axis){
-			for(byte x = 0; x < 3 ; x++){
+			for(byte x = 0; x < axis.length ; x++){
 				axis[x] = (0.6667 * (Math.pow(axis[x], 3))+(0.333 * axis[x]));//ramps tthe function and returns it to getFinalAxis
 			}
 			return (axis);
 		}
-		public static double[] grabber(){
-			if(open.get() == true){//if open or close is pressed store info into an array with respective information
+		public double[] grabber(){
+			if(gameController.getRawButton(2)){//if open or close is pressed store info into an array with respective information
 				solenoidInput[0]= 1;
 				solenoidInput[1] = 0;
 			}
-			if(close.get() == true){
+			else if(gameController.getRawButton(3)){
 				solenoidInput[0] = 0;
 				solenoidInput[1] = 1;
 			}
 			return solenoidInput;//return the array
 		}
 		
-		public static double[] elevatorInput(){
+		public double[] elevatorInput(){
 			gameaxis[0] = gameController.getRawAxis(3);//y axis 
 			//gameaxis[1] = gameController.getRawAxis(2);//x axis -- we don't need this...
 			gameaxis = ramp(deadZone(gameaxis));//transforms the array to deadzone to round values as necessary (ex. -0.03 to 0)
