@@ -38,8 +38,9 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	
+    	MC.driveomni(R.playBackDrive());
     	MC.getGrabberMethod(R.playBackGrabber());
+    	MC.Elevate(R.playBackElevator());
     }
 
     /**
@@ -65,12 +66,13 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
     	double gyangle = S.gyread();
-    	//MC.DriveMec(IM.getFinalAxis(gyangle));//in order to drive backup function
-    	//MC.DriveMec(IM.getFinalAxis()); //Driving for FRC function.
+    	//System.out.println("Are we even running?");
+    	MC.driveomni(IM.getAxisValue());
+    	//MC.DriveMec(IM.getFinalAxis(gyangle)); //Driving for FRC function.
     	//IM.grabber(); - I don't think we need that here.
         MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
         MC.Elevate(IM.elevatorInput());//sends input from joystick to elevator function in motor control.
-    	//R.getData(IM.getFinalAxis(gyangle),InputManager.grabber(), InputManager.elevatorInput());
+    	R.getData(IM.getFinalAxis(gyangle),IM.grabber(), IM.elevatorInput());
 		if(Recorder.writeToFile){
 			WR.writeData(R);
 			WR.setCounter();
