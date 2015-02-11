@@ -10,7 +10,7 @@ public class MotorControl {
 	protected static double angle;//angle
 	protected static Victor elevator;//motor in charge of elevator
 	protected static  Solenoid solenoid1, solenoid2;//solenoid motors
-	protected static Talon topleft, topright, bottomleft, bottomright;
+	protected static Talon topleft, bottomright, bottomleft, topright;
 	protected static Compressor comp;
 	
 	//static double[] drive= new double[4];
@@ -20,8 +20,8 @@ public class MotorControl {
 	//	drv = new RobotDrive(0,1,2,3);//constructor 
 		topleft = new Talon(0);
 		bottomleft = new Talon(1);
-		bottomright = new Talon(2);
-		topright = new Talon(3);
+		topright = new Talon(2);
+		bottomright = new Talon(3);
 	//	S = new Sensors();//instance of sensors is created
 	//	angle = S.readgy();//calls upon the lass readgy which is located in sensors
 		elevator = new Victor(4);
@@ -45,9 +45,9 @@ public class MotorControl {
 public void driveomni(double[] driv){
 		finaldrv(driv);
 			topleft.set(driv[0]);
-			topright.set(driv[1]);
+			bottomright.set(driv[1]);
 			bottomleft.set(driv[2]);
-			bottomright.set(driv[3]);
+			topright.set(driv[3]);
 		
 	}
 	public void getGrabberMethod(double[] solenoidInput){//if open is pressed
@@ -63,9 +63,6 @@ public void driveomni(double[] driv){
 	}
 	public void Elevate(double[] elev){
 		elevator.set(elev[0]);//Raises/lowers the elevator.
-		if (-0.1 < elev[0] && elev[0] <0.1){
-			//system break mechanical stop
-		}
 	}
 	public void Compress(){
 		if(comp.getPressureSwitchValue()==true){
