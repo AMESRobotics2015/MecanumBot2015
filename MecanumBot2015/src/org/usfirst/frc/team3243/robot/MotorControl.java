@@ -43,7 +43,7 @@ public class MotorControl {
 	}
 	
 public void driveomni(double[] driv){
-		finaldrv(driv);
+		driv = finaldrv(driv);
 			topleft.set(driv[0]);
 			bottomright.set(driv[1]);
 			bottomleft.set(driv[2]);
