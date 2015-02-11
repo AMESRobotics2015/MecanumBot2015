@@ -40,9 +40,17 @@ public class InputManager{
 			double controllerangle = 0;
 			double mag;
 			
-			axis[0] = ps2controller.getRawAxis(3);// y axis
-			axis[1] = ps2controller.getRawAxis(2);// x axis
-			axis[3] = ps2controller.getRawAxis(0);//rotation.
+			if (RobotMap.AdamDrive){
+				axis[0] = ps2controller.getRawAxis(2);//y axis 
+				axis[1] = ps2controller.getRawAxis(3);//x axis
+				axis[2] = ps2controller.getRawAxis(0);//pivoting
+			}
+			else{
+				axis[0] = ps2controller.getRawAxis(0);//y axis 
+				axis[1] = ps2controller.getRawAxis(1);//x axis
+				axis[2] = ps2controller.getRawAxis(2);//pivoting
+			}
+			
 			deadZone(axis);//deadzones the values.
 			controllerangle = Math.atan2(axis[0],axis[1]);//agnle joystick is at
 			mag = Math.sqrt(Math.pow(axis[0], 2)+Math.pow(axis[1], 2));//find magnitude of controller
