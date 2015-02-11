@@ -34,10 +34,10 @@ public class MotorControl {
 
 	public double[] finaldrv(double[] driv){
 		double[] drive = new double[4]; 
-		drive[0] = (driv[0] * .75) + (driv[1] * .75) - (driv[2]);
-		drive[1] = (driv[0] * .75) + (driv[1] * .75) + (driv[2]);
-		drive[2] = -(driv[0] * .75) + (driv[1] * .75) + (driv[2]);
-		drive[3] = -(driv[0] * .75) + (driv[1] * .75) - (driv[2]);//This part of the function goes positive or negative based upon the movement each motor does in a given situation. Paper with where MArk worked this out should be with the project sheet.
+		drive[0] = (driv[0] * .75) + (driv[1] * .75) + (driv[2]);
+		drive[1] = (driv[0] * .75) + (driv[1] * .75) - (driv[2]);
+		drive[2] = (driv[0] * .75) - (driv[1] * .75) + (driv[2]);
+		drive[3] = (driv[0] * .75) - (driv[1] * .75) - (driv[2]);//This part of the function goes positive or negative based upon the movement each motor does in a given situation. Paper with where MArk worked this out should be with the project sheet.
 		return drive;
 		
 	}
