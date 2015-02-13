@@ -18,5 +18,8 @@ public class Sensors {
 		gyreading = gyreading *Math.PI/180;
 		return gyreading;
 	}
+	public void gyreset(){
+		G.reset();
+	}
 
 }
