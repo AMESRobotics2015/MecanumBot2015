@@ -43,17 +43,8 @@ public class Recorder implements java.io.Serializable {
 	
 	public void getData(double[] drive, double[] elevator, double[] solenoid){//gets data from joystick array
 		
-		IM.record();
-		if(clearData){//clears data if not already cleared
-			this.Data0.clear();
-			this.Data1.clear();
-			this.Data2.clear();
-			this.ElevData.clear();
-			this.GrabberData0.clear();
-			this.GrabberData1.clear();
-			clearData = false;//stops clearing of data
-		}else if (isRecording /*&& startRecord */){//starts recording if button is pressed and joystick has been changed
-			
+		IM.record();		
+		if (isRecording /*&& startRecord */){//starts recording if button is pressed and joystick has been changed
 		this.Data0.add(drive[0]);//records data to static arraylists
 		this.Data1.add(drive[1]);
 		this.Data2.add(drive[2]);
@@ -88,8 +79,9 @@ public class Recorder implements java.io.Serializable {
 		}		
 		return playArray;
 		}
-		public double[] playBackElevator(){
-			double[]playArray = new double[3];
+		
+	public double[] playBackElevator(){
+			double[]playArray = new double[1];
 			if(playIncrement > this.ElevData.size()-1){//if it keeps reading larger than the size for any reason, this stops the robot
 				playArray[0]=0;
 				
@@ -99,7 +91,8 @@ public class Recorder implements java.io.Serializable {
 			}	
 			return playArray;			
 		}
-		public double[] playBackGrabber(){
+		
+	public double[] playBackGrabber(){
 			double[]playArray = new double[2];
 			if(playIncrement > this.GrabberData0.size()-1){//if it keeps reading larger than the size for any reason, this stops the robot
 				playArray[0]=0;
