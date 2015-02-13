@@ -7,6 +7,9 @@ import java.io.*;
 
 
 public class Recorder implements java.io.Serializable {
+	/**
+	 * 
+	 */
 	ArrayList<Double> Data0 = new ArrayList<Double>();//creates 3 object-specific arraylists
 	ArrayList<Double> Data1 = new ArrayList<Double>();
 	ArrayList<Double> Data2 = new ArrayList<Double>();	

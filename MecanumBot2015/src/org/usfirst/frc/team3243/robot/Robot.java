@@ -54,11 +54,6 @@ public class Robot extends IterativeRobot {
     	//IM.grabber(); - I don't think we need that here.
         MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
         MC.Elevate(IM.elevatorInput());//sends input from joystick to elevator function in motor control.
-    	//R.getData(IM.getFinalAxis(gyangle),InputManager.grabber(), InputManager.elevatorInput());
-		//if(Recorder.writeToFile){
-		//	WR.writeData(R);
-		//	WR.setCounter();
-	//	}
     }
     
     /**
@@ -72,7 +67,8 @@ public class Robot extends IterativeRobot {
     	//IM.grabber(); - I don't think we need that here.
         MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
         MC.Elevate(IM.elevatorInput());//sends input from joystick to elevator function in motor control.
-    	R.getData(IM.getFinalAxis(gyangle),IM.grabber(), IM.elevatorInput());
+    	R.getData(IM.getAxisValue(), IM.elevatorInput(), IM.grabber());
+	//	}
 		if(Recorder.writeToFile){
 			WR.writeData(R);
 			WR.setCounter();
