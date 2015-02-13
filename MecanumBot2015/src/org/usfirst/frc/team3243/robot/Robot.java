@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
     	MC.driveomni(IM.getAxisValue());
     	//MC.DriveMec(IM.getFinalAxis(gyangle)); //Driving for FRC function.
     	//IM.grabber(); - I don't think we need that here.
-        MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
+        MC.getGrabberMethod(IM.grabber());//grabber functions after a button is pressed
         MC.Elevate(IM.elevatorInput());//sends input from joystick to elevator function in motor control.
     }
     
@@ -69,7 +69,7 @@ public class Robot extends IterativeRobot {
     	//System.out.println("Are we even running?");
     	MC.driveomni(IM.getAxisValue());
     	//MC.DriveMec(IM.getFinalAxis(gyangle)); //Driving for FRC function.
-        MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
+        MC.getGrabberMethod(IM.grabber());//grabber functions after a button is pressed
         MC.Elevate(IM.elevatorInput());//sends input from joystick to elevator function in motor control.
     	R.getData(IM.getAxisValue(), IM.elevatorInput(), IM.grabber());
 	//	}

@@ -8,7 +8,6 @@ public class Writer implements java.io.Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	int outputCounter = 0;
 	public void writeData(Recorder r){//writes data to file
 		//try
