@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	if(!Recorder.isRead){
+    	if(Recorder.isRead == false){
     		RE.readData(R);
     	}
     	MC.driveomni(R.playBackDrive());
@@ -76,6 +76,12 @@ public class Robot extends IterativeRobot {
 		if(Recorder.writeToFile){
 			WR.writeData(R);
 			WR.setCounter();
+			R.Data0.clear();//clears recorder object data
+	         R.Data1.clear();
+	         R.Data2.clear();
+	         R.ElevData.clear();
+	         R.GrabberData0.clear();
+	         R.GrabberData1.clear();
 		}
     }
     

@@ -20,11 +20,9 @@ public class Recorder implements java.io.Serializable {
 	static transient int counter = Reader.getCounter();//sets value of recording counter to the last recording value
 	static transient int planNumber = 2;//number of plan to execute on playback
 	static transient boolean isRead= false;//checks to see if the file was correctly read
-	static transient boolean startRecord = false;
 	static transient boolean writeToFile =false;
 	public static boolean isRecording = false;
 	public static int playIncrement=0;
-	public static boolean clearData = false;
 	public static boolean timerOn = false;
 	transient InputManager IM = new InputManager();
 	
@@ -33,8 +31,7 @@ public class Recorder implements java.io.Serializable {
 		@Override
 		public void run() {
 			
-			isRecording = false;//stops recording
-			startRecord = false;			
+			isRecording = false;//stops recording			
 			writeToFile = true;
 			System.out.println("timer ran");
 		}

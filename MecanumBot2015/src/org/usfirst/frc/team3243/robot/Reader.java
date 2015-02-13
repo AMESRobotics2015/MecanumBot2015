@@ -11,12 +11,7 @@ public class Reader {
 		 
 		try
 	      {
-			 r.Data0.clear();//clears recorder object data
-	         r.Data1.clear();
-	         r.Data2.clear();
-	         r.ElevData.clear();
-	         r.GrabberData0.clear();
-	         r.GrabberData1.clear();
+			 
 	         FileInputStream fileIn = new FileInputStream("/home/lvuser/auto/Recording " + Recorder.planNumber + ".JSON");//reads in file with #
 	         ObjectInputStream in = new ObjectInputStream(fileIn);	         
 	         reader = (Recorder) in.readObject();//sets reader object to read in object
@@ -29,6 +24,9 @@ public class Reader {
 	 		 r.GrabberData0 = reader.GrabberData0;
 	 		 r.GrabberData1 = reader.GrabberData1;
 	 		Recorder.isRead = true;
+	 		
+	 		fileIn = null;
+	 		in = null;
 	      }catch(IOException i){}
 		   catch(ClassNotFoundException c){}
 		

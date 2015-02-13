@@ -23,6 +23,8 @@ public class Writer implements java.io.Serializable{
 		         Recorder.writeToFile = false;
 				++Recorder.counter;//increments # of recording
 				System.out.println("File Written");
+				FileOut = null;
+				fileout = null;
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
