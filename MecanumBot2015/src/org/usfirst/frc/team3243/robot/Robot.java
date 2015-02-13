@@ -53,7 +53,15 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	double gyangle = S.gyread();
-    	//System.out.println("Are we even running?");
+    	System.out.println(gyangle);
+    	if(T.gdt(2) >= .3 && IM.getAdamButton()){
+			T.sc(2);
+			IM.togAdamButton();
+		}
+    	if(IM.getwat(4)){
+    		S.gyreset();
+    	}
+    	//MC.driveomni(IM.adjustGetAngle(gyangle));
     	MC.driveomni(IM.getAxisValue());
     	//MC.DriveMec(IM.getFinalAxis(gyangle)); //Driving for FRC function.
     	//IM.grabber(); - I don't think we need that here.

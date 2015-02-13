@@ -76,6 +76,7 @@ public class InputManager{
 			}
 			
 			axis = deadZone(axis);//transforms the array to deadzone to round values as necessary (ex. -0.03 to 0)
+			ramp(axis);
 			return axis;
 			
 			
@@ -88,7 +89,7 @@ public class InputManager{
 		 */
 		public static double[] deadZone(double[] axis){
 			for (int i = 0; i< axis.length; i++){
-				if ((axis[i] <= 0.05) && (axis[i] >= -0.05)) {//i will iterate to 0,1,2 since axis array size is 3
+				if ((axis[i] <= 0.01) && (axis[i] >= -0.01)) {//i will iterate to 0,1,2 since axis array size is 3
 					axis[i] = 0;//if the condition is satisfies, round it to zero
 				}
 			}
@@ -100,6 +101,29 @@ public class InputManager{
 				axis[x] = (0.6667 * (Math.pow(axis[x], 3))+(0.333 * axis[x]));//ramps tthe function and returns it to getFinalAxis
 			}
 			return (axis);
+		}
+
+		public static boolean getGyroResetButton()
+		{
+			 return ps2controller.getRawButton(2);
+			
+		}
+		public void togAdamButton(){
+			 if(RobotMap.AdamDrive) {
+				 RobotMap.AdamDrive = false;
+			 }
+			 else {
+				 RobotMap.AdamDrive = true;
+			 }
+		}
+		public boolean getAdamButton(){
+			 return ps2controller.getRawButton(8);
+		}
+		
+		public boolean getwat(int pin)
+		{
+			 return ps2controller.getRawButton(pin);
+			
 		}
 		public double[] grabber(){
 			if(gameController.getRawButton(2)){//if open or close is pressed store info into an array with respective information
