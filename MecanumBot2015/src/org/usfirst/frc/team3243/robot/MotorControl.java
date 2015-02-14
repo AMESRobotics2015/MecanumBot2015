@@ -28,22 +28,32 @@ public class MotorControl {
 		solenoid1 = new Solenoid(0);
 		solenoid2 = new Solenoid(1);
 		comp = new Compressor(0);
-		
+		comp.setClosedLoopControl(true);
 		
 	}
 
-	public double[] finaldrv(double[] driv){
+	public double[] finaldrv(double[] driv, boolean sprint){
+		double lim = .5;
 		double[] drive = new double[4]; 
-		drive[0] = (driv[0] * .75) - (driv[1] * .75) + (driv[2]);
-		drive[1] = (driv[0] * .75) + (driv[1] * .75) - (driv[2]);
-		drive[2] = (driv[0] * .75) + (driv[1] * .75) + (driv[2]);
-		drive[3] = (driv[0] * .75) - (driv[1] * .75) - (driv[2]);//This part of the function goes positive or negative based upon the movement each motor does in a given situation. Paper with where MArk worked this out should be with the project sheet.
+		if(!sprint){
+		drive[0] = ((driv[2] * .75) - (driv[1]*1.25) + (driv[0]))* lim;
+		drive[1] = (-(driv[2] * .75) + (driv[1]*1.25) + (driv[0]))* lim;
+		drive[2] = ((driv[2] * .75) + (driv[1]*1.25) + (driv[0]))* lim;
+		drive[3] = (-(driv[2] * .75) - (driv[1]*1.25) + (driv[0]))* lim;//This part of the function goes positive or negative based upon the movement each motor does in a given situation. Paper with where MArk worked this out should be with the project sheet.
 		return drive;
+		}
+		else{
+			drive[0] = ((driv[2] * .75) - (driv[1] * .75) + (driv[0]));
+			drive[1] = (-(driv[2] * .75) + (driv[1] * .75) - (driv[0]));
+			drive[2] = ((driv[2] * .75) + (driv[1] * .75) + (driv[0]));
+			drive[3] = (-(driv[2] * .75) - (driv[1] * .75) - (driv[0]));//This part of the function goes positive or negative based upon the movement each motor does in a given situation. Paper with where MArk worked this out should be with the project sheet.
+			return drive;
+			}
 		
 	}
 	
-public void driveomni(double[] driv){
-		driv = finaldrv(driv);
+public void driveomni(double[] driv, boolean sprint){
+		driv = finaldrv(driv,sprint);
 			topleft.set(driv[0]);
 			bottomright.set(driv[1]);
 			bottomleft.set(driv[2]);
@@ -61,16 +71,33 @@ public void driveomni(double[] driv){
 			solenoid2.set(true);
 		}
 	}
-	public void Elevate(double[] elev){
-		elevator.set(elev[0]);//Raises/lowers the elevator.
+	public boolean Elevate(double[] elev){
+		elevator.set(elev[0]);//Raises/lowers the elevator.		
+			if(elev[0] <= -.1 | elev[0] >= .1){
+				//System.out.println("Elevating");
+				return true;
+				
+			}
+			else if(elev[0] > -.1 | elev[0] < .1){
+				//System.out.println("False");
+				return false;
+			}
+			
+		//System.out.println("False");
+		return false;
 	}
-	public void Compress(){
-		if(comp.getPressureSwitchValue()==true){
+	public void Compress(boolean estop){
+		//System.out.println("Preassure switch:" + comp.getPressureSwitchValue());
+		//System.out.println("enabled:" + comp.enabled());
+		if((!comp.getPressureSwitchValue() && !comp.enabled()) && !estop){
+			System.out.println("Compstart");
 			comp.start();
-		}else if(comp.getPressureSwitchValue()==false){
+		}else if((comp.getPressureSwitchValue() && comp.enabled()) || (estop && comp.enabled())){
+			System.out.println("Compstop");
 			comp.stop();
-		}
 	}
-	
-	
+}
+	public void forcestart(){
+		comp.start();
+	}
 }

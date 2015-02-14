@@ -26,6 +26,7 @@ public class Robot extends IterativeRobot {
 	
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
+    	
     	MC = new MotorControl();//MC is the master instance of motor control
     	S = new Sensors(); //S is the master instance of Sensors
     	R = new Recorder();
@@ -34,6 +35,7 @@ public class Robot extends IterativeRobot {
     	T.Init();
     	T.Freset();
     	RE = new Reader();
+    	//MC.forcestart();
     }
 
     /**
@@ -43,7 +45,7 @@ public class Robot extends IterativeRobot {
     	if(!Recorder.isRead){
     		RE.readData(R);
     	}
-    	MC.driveomni(R.playBackDrive());
+    	MC.driveomni(R.playBackDrive(),IM.getwat(11));
     	MC.getGrabberMethod(R.playBackGrabber());
     	MC.Elevate(R.playBackElevator());
     }
@@ -53,21 +55,28 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	double gyangle = S.gyread();
-    	//System.out.println(gyangle);
-    	if(T.gdt(2) >= .3 && IM.getAdamButton()){
-			T.sc(2);
+    	//System.out.println(T.gdt(1));
+    	if(T.gdt(1) >= .2 && IM.getAdamButton()){
+			T.sc(1);
 			IM.togAdamButton();
 		}
     	if(IM.getwat(4)){
     		S.gyreset();
     	}
     	//MC.driveomni(IM.adjustGetAngle(gyangle));
-    	MC.driveomni(IM.getAxisValue());
-    	IM.adjustGetAngle(gyangle);
+    	MC.driveomni(IM.getAxisValue(),IM.getwat(8));
+    	//System.out.println("Closed loop?: " + MC.comp.getClosedLoopControl());
+    	//if(!MC.comp.getClosedLoopControl()){
+    	MC.Compress(MC.Elevate(IM.elevatorInput()));
+    //	}
+    //	else{
+    //		MC.Elevate(IM.elevatorInput());
+    	//}
+    	//IM.adjustGetAngle(gyangle);
     	//MC.DriveMec(IM.getFinalAxis(gyangle)); //Driving for FRC function.
     	//IM.grabber(); - I don't think we need that here.
         MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
-        MC.Elevate(IM.elevatorInput());//sends input from joystick to elevator function in motor control.
+        //sends input from joystick to elevator function in motor control.
     }
     
     /**
@@ -76,7 +85,7 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
     	double gyangle = S.gyread();
     	//System.out.println("Are we even running?");
-    	MC.driveomni(IM.getAxisValue());
+    	MC.driveomni(IM.getAxisValue(),IM.getwat(11));
     	//MC.DriveMec(IM.getFinalAxis(gyangle)); //Driving for FRC function.
         MC.getGrabberMethod(IM.grabber());//grabber functions ater a button is pressed
         MC.Elevate(IM.elevatorInput());//sends input from joystick to elevator function in motor control.

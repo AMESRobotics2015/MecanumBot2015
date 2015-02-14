@@ -47,13 +47,13 @@ public class InputManager{
 				axis[0] = ps2controller.getRawAxis(0);//pivoting
 			}
 			else{
-				axis[1] = -ps2controller.getRawAxis(0);//y axis 
-				axis[2] = -ps2controller.getRawAxis(1);//x axis
-				axis[0] = ps2controller.getRawAxis(2);//pivoting
+				axis[0] = -ps2controller.getRawAxis(0);//y axis 
+				axis[1] = -ps2controller.getRawAxis(1);//x axis
+				axis[2] = ps2controller.getRawAxis(2);//pivoting
 			}
 			
 			deadZone(axis);//deadzones the values.
-			controllerangle = Math.atan2(axis[0],axis[1]);//angle joystick is at
+			controllerangle = -Math.atan2(axis[0],axis[1]);//angle joystick is at
 				/*	if (axis[1]<0){
 							controllerangle = Math.PI + Math.atan(axis[0]/axis[1]);//get the angle that the joystick is pointing facing, in case the angle is in the second or third quadrant
 						}
@@ -61,11 +61,13 @@ public class InputManager{
 							controllerangle = Math.atan(axis[0]/axis[1]);//get angle if it's in the first or fourth quadrant
 						}
 						*/
+			System.out.println("gy:" + angle + "\tangle:" + controllerangle);
+			
 			mag = Math.sqrt(Math.pow(axis[0], 2)+Math.pow(axis[1], 2));//find magnitude of controller
 			axis[1] = mag*Math.cos(angle+controllerangle); // using the equation kole gave where our final inputs include MAGNITUDE
 			axis[0] = mag*Math.sin(angle+controllerangle); 
 			
-			System.out.println("gy:" + angle + "\tangle:" + controllerangle);
+			
 			
 			return axis;
 		}

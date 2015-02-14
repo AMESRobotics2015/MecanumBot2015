@@ -13,7 +13,6 @@ public class MasterTimer extends Timer {
 
     public void Init() {
         actindex = new Vector();
-        addEventTimer("LimitDEBUG");
         addEventTimer("printsDEBUG");
         addEventTimer("Debounce");
     }
