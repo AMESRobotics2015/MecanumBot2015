@@ -18,7 +18,7 @@ public class Recorder implements java.io.Serializable {
 	ArrayList<Double> GrabberData1 = new ArrayList<Double>();
 	static transient Timer stopRecord= new Timer(); //creates timer object to stop recording after 15 seconds
 	static transient int counter = Reader.getCounter();//sets value of recording counter to the last recording value
-	static transient int planNumber = 1;//number of plan to execute on playback
+	static transient int planNumber = 2;//number of plan to execute on playback
 	static transient boolean isRead= false;//checks to see if the file was correctly read
 	static transient boolean startRecord = false;
 	static transient boolean writeToFile =false;
