@@ -52,12 +52,12 @@ public class InputManager{
 			}
 			
 			deadZone(axis);//deadzones the values.
-			controllerangle = Math.atan2(axis[0],axis[1]);//agnle joystick is at
+			controllerangle = Math.atan2(axis[0],axis[1]);//angle joystick is at
 			mag = Math.sqrt(Math.pow(axis[0], 2)+Math.pow(axis[1], 2));//find magnitude of controller
-			
 			axis[1] = mag*Math.cos(angle+controllerangle); // using the equation kole gave where our final inputs include MAGNITUDE
 			axis[0] = mag*Math.sin(angle+controllerangle); 
 			
+			System.out.println("gy:" + angle + "\tangle:" + controllerangle);
 			
 			return axis;
 		}
