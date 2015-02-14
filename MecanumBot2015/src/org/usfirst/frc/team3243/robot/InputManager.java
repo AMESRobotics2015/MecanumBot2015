@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3243.robot;
 import edu.wpi.first.wpilibj.*;
+import java.lang.Math;
 import edu.wpi.first.wpilibj.RobotDrive.*;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -53,6 +54,13 @@ public class InputManager{
 			
 			deadZone(axis);//deadzones the values.
 			controllerangle = Math.atan2(axis[0],axis[1]);//angle joystick is at
+				/*	if (axis[1]<0){
+							controllerangle = Math.PI + Math.atan(axis[0]/axis[1]);//get the angle that the joystick is pointing facing, in case the angle is in the second or third quadrant
+						}
+						else{
+							controllerangle = Math.atan(axis[0]/axis[1]);//get angle if it's in the first or fourth quadrant
+						}
+						*/
 			mag = Math.sqrt(Math.pow(axis[0], 2)+Math.pow(axis[1], 2));//find magnitude of controller
 			axis[1] = mag*Math.cos(angle+controllerangle); // using the equation kole gave where our final inputs include MAGNITUDE
 			axis[0] = mag*Math.sin(angle+controllerangle); 
