@@ -44,9 +44,9 @@ public class MotorControl {
 		}
 		else{
 			drive[0] = ((driv[2] * .75) - (driv[1] * .75) + (driv[0]));
-			drive[1] = (-(driv[2] * .75) + (driv[1] * .75) - (driv[0]));
+			drive[1] = (-(driv[2] * .75) + (driv[1] * .75) + (driv[0]));
 			drive[2] = ((driv[2] * .75) + (driv[1] * .75) + (driv[0]));
-			drive[3] = (-(driv[2] * .75) - (driv[1] * .75) - (driv[0]));//This part of the function goes positive or negative based upon the movement each motor does in a given situation. Paper with where MArk worked this out should be with the project sheet.
+			drive[3] = (-(driv[2] * .75) - (driv[1] * .75) + (driv[0]));//This part of the function goes positive or negative based upon the movement each motor does in a given situation. Paper with where MArk worked this out should be with the project sheet.
 			return drive;
 			}
 		
