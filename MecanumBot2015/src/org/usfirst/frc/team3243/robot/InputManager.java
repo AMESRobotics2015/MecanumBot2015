@@ -75,13 +75,13 @@ public class InputManager{
 		public double[] getAxisValue(){
 			
 			if (RobotMap.AdamDrive){
-				axis[1] = -ps2controller.getRawAxis(2);//y axis 
-				axis[2] = -ps2controller.getRawAxis(3);//x axis
+				axis[2] = -ps2controller.getRawAxis(2);//y axis 
+				axis[1] = -ps2controller.getRawAxis(3);//x axis
 				axis[0] = ps2controller.getRawAxis(0);//pivoting
 			}
 			else{
-				axis[1] = -ps2controller.getRawAxis(0);//y axis 
-				axis[2] = -ps2controller.getRawAxis(1);//x axis
+				axis[2] = ps2controller.getRawAxis(0);//y axis 
+				axis[1] = ps2controller.getRawAxis(1);//x axis
 				axis[0] = ps2controller.getRawAxis(2);//pivoting
 			}
 			
