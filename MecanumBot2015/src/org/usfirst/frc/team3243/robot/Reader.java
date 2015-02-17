@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class Reader {
+FileInputStream fileIn;
+ObjectInputStream in;
 	public void readData(Recorder r){
 		 Recorder reader= new Recorder();
-		 
+		try{ 
 		try
 	      {
 			 r.Data0.clear();//clears recorder object data
@@ -17,8 +19,8 @@ public class Reader {
 	         r.ElevData.clear();
 	         r.GrabberData0.clear();
 	         r.GrabberData1.clear();
-	         FileInputStream fileIn = new FileInputStream("/home/lvuser/auto/Recording " + Recorder.planNumber + ".JSON");//reads in file with #
-	         ObjectInputStream in = new ObjectInputStream(fileIn);	         
+	         fileIn = new FileInputStream("/home/lvuser/auto/Recording " + Recorder.planNumber + ".JSON");//reads in file with #
+	         in = new ObjectInputStream(fileIn);	         
 	         reader = (Recorder) in.readObject();//sets reader object to read in object
 	         in.close();
 	         fileIn.close();
@@ -32,6 +34,23 @@ public class Reader {
 	      }catch(IOException i){}
 		   catch(ClassNotFoundException c){}
 		
+		}finally{
+			if(fileIn !=null){
+				try {
+					fileIn.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}if(in !=null){
+				try {
+					in.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		
 	}
 	public static int getCounter(){

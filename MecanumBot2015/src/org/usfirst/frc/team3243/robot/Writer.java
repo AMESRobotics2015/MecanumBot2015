@@ -10,17 +10,18 @@ public class Writer implements java.io.Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	int outputCounter = 0;
+	FileOutputStream FileOut;
+	ObjectOutputStream fileout;
 	public void writeData(Recorder r){//writes data to file
-		//try
-	     // {
+		try
+	     {
 			
-			FileOutputStream FileOut;
+			
 			try {
 				 FileOut = new FileOutputStream("/home/lvuser/auto/Recording " + Recorder.counter + ".JSON");//outputs recording and # to a json
-		         ObjectOutputStream fileout = new ObjectOutputStream(FileOut);
+		         fileout = new ObjectOutputStream(FileOut);
 		         fileout.writeObject(r);//writes recorder object to file
 		         fileout.close();
-		         FileOut.close();
 		         Recorder.writeToFile = false;
 				++Recorder.counter;//increments # of recording
 			} catch (FileNotFoundException e1) {
@@ -31,6 +32,23 @@ public class Writer implements java.io.Serializable{
 				e.printStackTrace();
 			}
 			
+	     }finally{
+				if(FileOut !=null){
+					try {
+						FileOut.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}if(fileout !=null){
+					try {
+						fileout.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
 		
 	}
 	         
