@@ -13,4 +13,5 @@ public static boolean timerOn = false;
 public static boolean writeToFile = false;
 public static boolean AdamDrive = false;
 public static boolean islifting = false;
+public static String cameraHost = "Filler";
 }

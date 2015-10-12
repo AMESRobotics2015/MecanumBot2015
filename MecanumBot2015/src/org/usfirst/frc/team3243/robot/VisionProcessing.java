@@ -9,14 +9,15 @@ import edu.wpi.first.wpilibj.image.*;
 import edu.wpi.first.wpilibj.vision.*;
 
 public class VisionProcessing {
-/*
-	AxisCamera cam = new AxisCamera(in);
-	MonoImage m = new MonoImage();
+
+	RobotMap r = new RobotMap();
+	
+	AxisCamera cam = new AxisCamera(r.cameraHost);
 	Image image;
 	
 	public void image(){
 		cam.getImage(image);
 		
 	}
-	*/
+	
 }
