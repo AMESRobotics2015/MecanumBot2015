@@ -25,6 +25,8 @@ public class Robot extends IterativeRobot {
 	private static Writer WR;
 	private static MasterTimer T;
 	private static Reader RE;
+	private static VisionProcessing VP;
+	private static RobotMap RM;
 	
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
@@ -38,12 +40,16 @@ public class Robot extends IterativeRobot {
     	T.Freset();
     	RE = new Reader();
     	//MC.forcestart();
+    	VP = new VisionProcessing();
+    	RM = new RobotMap();
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	VP.camSetup(RM.cameraHost);
+    	VP.recieveImage();
     	if(!Recorder.isRead){
     		RE.readData(R);
     	}
