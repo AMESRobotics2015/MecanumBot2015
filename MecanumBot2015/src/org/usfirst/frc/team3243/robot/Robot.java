@@ -50,12 +50,14 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
     	VP.camSetup(RM.cameraHost);
     	VP.recieveImage();
+    	/*
     	if(!Recorder.isRead){
     		RE.readData(R);
     	}
     	MC.driveomni(R.playBackDrive(),IM.getwat(11));
     	MC.getGrabberMethod(R.playBackGrabber());
     	MC.Elevate(R.playBackElevator());
+    	*/
     }
 
     /**
