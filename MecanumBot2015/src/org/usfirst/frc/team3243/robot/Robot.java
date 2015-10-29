@@ -18,6 +18,8 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
 	
+	//Example
+	
 	private static InputManager IM;
 	private static MotorControl MC;
 	private static Sensors S;
