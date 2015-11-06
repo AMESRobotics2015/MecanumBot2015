@@ -12,7 +12,7 @@ public class MotorControl {
 	protected static  Solenoid solenoid1, solenoid2;//solenoid motors
 	protected static Talon topleft, bottomright, bottomleft, topright;
 	protected static Compressor comp;
-	
+	String Motto = "Mark is Dumb";
 	//static double[] drive= new double[4];
 	
 	public MotorControl(){
@@ -30,6 +30,52 @@ public class MotorControl {
 		comp = new Compressor(0);
 		comp.setClosedLoopControl(true);
 		
+	}
+	
+	//automated code 11/2/2015 by Joshua Ong and Tarun SunCarANaeNae
+	// autonomously moving the robot a set distance
+	
+	public double [] calibrate(double 1,double 2,double 3,double 4,double rate){
+		setStatusFramerate(10);
+		setFeedackDevice(topleft);
+		//collects sensor data
+		w = getSensorVelocity(topleft);
+		x = getSensorVelocity(topright);
+		y = getSensorVelocity(bottomleft);
+		z = getSensorVelocity(bottomleft);
+		//declare array
+		double[] calibrate = new Double[4];
+		w = calibrate[0];
+		x = (w/x) * x;
+		x = calibrate[1];
+		y = (w/y) * y;
+		y = calibrate[2];
+		z = (w/z) * z;
+		z = calibrate[3];
+		return calibrate;
+	}
+	
+	public void move(double one,double two,double three,double four,double rate){
+		//todo:equalize velocity
+		//sets how OFTEN sensors are detected
+		setStatusFramerate(10);
+		//initiates sensor
+		setFeedackDevice();
+		while(true)
+		{
+//talon measuring position
+		x = getSensorPosition();
+		if (x >= 10 meters)
+		{
+			break;
+		}
+		//sets relay levels top left clockwise
+		//from 1.0 to -1.0	
+		topleft.set(calibrate[0]);
+		topright.set(calibrate[1]);
+		bottomright.set(calibrate[2]);
+		bottomleft.set(calibrate[3]);
+		}
 	}
 
 	public double[] finaldrv(double[] driv, boolean sprint){
@@ -51,6 +97,7 @@ public class MotorControl {
 			}
 		
 	}
+	
 	
 public void driveomni(double[] driv, boolean sprint){
 		driv = finaldrv(driv,sprint);
