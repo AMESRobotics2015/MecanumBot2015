@@ -38,8 +38,9 @@ public class MotorControl {
 	public double [] calibrate(double 1,double 2,double 3,double 4,double rate){
 		setStatusFramerate(10);
 		setFeedackDevice(topleft);
+		
 		//collects sensor data
-		w = getSensorVelocity(topleft);
+		w = getSensorSpeed (topleft);
 		x = getSensorVelocity(topright);
 		y = getSensorVelocity(bottomleft);
 		z = getSensorVelocity(bottomleft);
@@ -54,7 +55,14 @@ public class MotorControl {
 		z = calibrate[3];
 		return calibrate;
 	}
+	public void move(double rate[]){
+		topleft.set(rate[0]);
+		topright.set(rate[1]);
+		bottomright.set(rate[2]);
+		bottomright.set(rate[3]);
+	}
 	
+	/*
 	public void move(double one,double two,double three,double four,double rate){
 		//todo:equalize velocity
 		//sets how OFTEN sensors are detected
@@ -77,6 +85,7 @@ public class MotorControl {
 		bottomleft.set(calibrate[3]);
 		}
 	}
+	*/
 
 	public double[] finaldrv(double[] driv, boolean sprint){
 		double lim = .5;

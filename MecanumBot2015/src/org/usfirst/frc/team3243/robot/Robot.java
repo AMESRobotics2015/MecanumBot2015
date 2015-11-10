@@ -52,6 +52,13 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
     	VP.camSetup(RM.cameraHost);
     	VP.recieveImage();
+    	double[] test = new double [4];
+    	test[0] = 0.2;
+    	test[1] = 0.2;
+    	test[2] = 0.2;
+    	test[3] = 0.2;
+    	MC.move(test);
+    	
     	/*
     	if(!Recorder.isRead){
     		RE.readData(R);
