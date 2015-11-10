@@ -34,7 +34,7 @@ public class MotorControl {
 	
 	//automated code 11/2/2015 by Joshua Ong and Tarun SunCarANaeNae
 	// autonomously moving the robot a set distance
-	
+	/*
 	public double [] calibrate(double 1,double 2,double 3,double 4,double rate){
 		setStatusFramerate(10);
 		setFeedackDevice(topleft);
@@ -55,6 +55,8 @@ public class MotorControl {
 		z = calibrate[3];
 		return calibrate;
 	}
+	*/
+	
 	public void move(double rate[]){
 		topleft.set(rate[0]);
 		topright.set(rate[1]);
