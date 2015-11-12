@@ -42,7 +42,6 @@ public class Robot extends IterativeRobot {
     	T.Freset();
     	RE = new Reader();
     	//MC.forcestart();
-    	VP = new VisionProcessing();
     	RM = new RobotMap();
     }
 
@@ -50,8 +49,6 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	VP.camSetup(RM.cameraHost);
-    	VP.recieveImage();
     	double[] test = new double [4];
     	test[0] = 0.2;
     	test[1] = 0.2;
