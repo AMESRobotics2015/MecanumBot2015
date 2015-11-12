@@ -27,7 +27,6 @@ public class Robot extends IterativeRobot {
 	private static Writer WR;
 	private static MasterTimer T;
 	private static Reader RE;
-	private static VisionProcessing VP;
 	private static RobotMap RM;
 	
     public void robotInit() {
