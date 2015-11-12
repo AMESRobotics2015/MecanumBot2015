@@ -53,8 +53,7 @@ public class Robot extends IterativeRobot {
     	test[1] = 0.2;
     	test[2] = 0.2;
     	test[3] = 0.2;
-    	MC.move(test);
-    	
+    	MC.move(test);    	
     	/*
     	if(!Recorder.isRead){
     		RE.readData(R);

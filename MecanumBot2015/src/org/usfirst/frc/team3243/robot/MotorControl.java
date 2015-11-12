@@ -61,7 +61,7 @@ public class MotorControl {
 		topleft.set(rate[0]);
 		topright.set(rate[1]);
 		bottomright.set(rate[2]);
-		bottomright.set(rate[3]);
+		bottomleft.set(rate[3]);
 	}
 	
 	/*
