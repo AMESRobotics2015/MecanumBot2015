@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot {
     	double[] test = new double [4];
     	test[0] = 0.2;
     	test[1] = 0.2;
-    	test[2] = 0.2;
+    	test[2] = 0.5;
     	test[3] = 0.2;
     	MC.move(test);    	
     	/*
