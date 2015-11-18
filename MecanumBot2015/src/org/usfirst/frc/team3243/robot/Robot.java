@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
     	do{
     	MC.move(test);
     	}
-    	while(calibrate.get()<10);
+    	while(calibrate.get()<2);
     	calibrate.reset();
     }
 
