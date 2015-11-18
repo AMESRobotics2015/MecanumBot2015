@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3243.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 
 //Testing GitHub
 
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 	private static MasterTimer T;
 	private static Reader RE;
 	private static RobotMap RM;
+	public Timer calibrate = new Timer();
 	
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
@@ -48,12 +50,8 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	double[] test = new double [4];
-    	test[0] = 0.2;
-    	test[1] = 0.2;
-    	test[2] = 0.5;
-    	test[3] = 0.2;
-    	MC.move(test);    	
+    	
+    	CalibrateDrive();    	
     	/*
     	if(!Recorder.isRead){
     		RE.readData(R);
@@ -62,6 +60,21 @@ public class Robot extends IterativeRobot {
     	MC.getGrabberMethod(R.playBackGrabber());
     	MC.Elevate(R.playBackElevator());
     	*/
+    }
+    
+    public void CalibrateDrive()
+    {
+    	double[] test = new double [4];
+    	test[0] = 0.9;
+    	test[1] = 0.9;
+    	test[2] = 0.9;
+    	test[3] = 0.9;
+    	calibrate.start();
+    	do{
+    	MC.move(test);
+    	}
+    	while(calibrate.get()<10);
+    	calibrate.reset();
     }
 
     /**
