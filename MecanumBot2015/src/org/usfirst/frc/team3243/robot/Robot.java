@@ -31,10 +31,14 @@ public class Robot extends IterativeRobot {
 	private static RobotMap RM;
 	public Timer calibrate = new Timer();
 	public double velocity = 10.1;
-	
+
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
-    	
+    	double[] test = new double [4];
+    	test[0] = 0.9;
+    	test[1] = 0.9;
+    	test[2] = 0.9;
+    	test[3] = 0.9;
     	MC = new MotorControl();//MC is the master instance of motor control
     	S = new Sensors(); //S is the master instance of Sensors
     	R = new Recorder();
@@ -82,6 +86,13 @@ public class Robot extends IterativeRobot {
     	double mVelocity = velocity;
     	//measured in ft
     	double estimatedTime = a / mVelocity;
+    	
+    	calibrate.start();
+    	do{
+    	MC.move(test);
+    	}
+    	while(calibrate.get()<a);
+    	calibrate.reset();
     	
     	
     }
