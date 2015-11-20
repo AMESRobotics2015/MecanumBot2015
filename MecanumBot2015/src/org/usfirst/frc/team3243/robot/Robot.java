@@ -30,6 +30,7 @@ public class Robot extends IterativeRobot {
 	private static Reader RE;
 	private static RobotMap RM;
 	public Timer calibrate = new Timer();
+	public double velocity = 10.1;
 	
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
@@ -75,6 +76,14 @@ public class Robot extends IterativeRobot {
     	}
     	while(calibrate.get()<2);
     	calibrate.reset();
+    }
+    
+    public void moveDistance(double a){
+    	double mVelocity = velocity;
+    	//measured in ft
+    	double estimatedTime = a / mVelocity;
+    	
+    	
     }
 
     /**
