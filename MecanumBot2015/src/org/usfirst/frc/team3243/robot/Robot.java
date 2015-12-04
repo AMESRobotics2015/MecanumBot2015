@@ -30,7 +30,8 @@ public class Robot extends IterativeRobot {
 	private static Reader RE;
 	private static RobotMap RM;
 	public Timer calibrate = new Timer();
-	public double velocity = 10.1;
+	//units in feet per Tarun's second
+	public double velocity = 3.0;
 
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
@@ -82,7 +83,18 @@ public class Robot extends IterativeRobot {
     	calibrate.reset();
     }
     
+    //param:a is distance in feet.
     public void moveDistance(double a){
+    	double[] test = new double [4];
+    	test[0] = 0.9;
+    	test[1] = 0.9;
+    	test[2] = 0.9;
+    	test[3] = 0.9;
+    	double[] stop = new double [4];
+    	stop[0] = 0.9;
+    	stop[1] = 0.9;
+    	stop[2] = 0.9;
+    	stop[3] = 0.9;
     	double mVelocity = velocity;
     	//measured in ft
     	double estimatedTime = a / mVelocity;
@@ -91,7 +103,8 @@ public class Robot extends IterativeRobot {
     	do{
     	MC.move(test);
     	}
-    	while(calibrate.get()<a);
+    	while(calibrate.get()<estimatedTime);
+    	MC.move(stop);
     	calibrate.reset();
     	
     	
