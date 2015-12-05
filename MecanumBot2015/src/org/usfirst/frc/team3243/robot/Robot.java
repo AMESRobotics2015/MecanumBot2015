@@ -91,14 +91,13 @@ public class Robot extends IterativeRobot {
     	test[2] = 0.9;
     	test[3] = 0.9;
     	double[] stop = new double [4];
-    	stop[0] = 0.9;
-    	stop[1] = 0.9;
-    	stop[2] = 0.9;
-    	stop[3] = 0.9;
+    	stop[0] = 0;
+    	stop[1] = 0;
+    	stop[2] = 0;
+    	stop[3] = 0;
     	double mVelocity = velocity;
     	//measured in ft
     	double estimatedTime = a / mVelocity;
-    	
     	calibrate.start();
     	do{
     	MC.move(test);
