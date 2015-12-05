@@ -31,7 +31,7 @@ public class Robot extends IterativeRobot {
 	private static RobotMap RM;
 	public Timer calibrate = new Timer();
 	//units in feet per Tarun's second
-	public double velocity = 6.66;
+	public double velocity = 6.85;
 
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
@@ -40,8 +40,7 @@ public class Robot extends IterativeRobot {
     	test[1] = 0.9;
     	test[2] = 0.9;
     	test[3] = 0.9;
-    	MC = new MotorControl();//MC is the master instance of motor control
-    	S = new Sensors(); //S is the master instance of Sensors
+    	MC = new MotorControl();//MC is the master instance of m
     	R = new Recorder();
     	WR = new Writer();
     	T = new MasterTimer();
@@ -96,8 +95,8 @@ public class Robot extends IterativeRobot {
     	double[] test = new double [4];
     	test[0] = 0.9;
     	test[1] = 0.9;
-    	test[2] = 0.9;
-    	test[3] = 0.9;
+    	test[2] = -0.9;
+    	test[3] = -0.9;
     	double[] stop = new double [4];
     	stop[0] = 0;
     	stop[1] = 0;
@@ -124,15 +123,12 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	double gyangle = S.gyread();
+    	//double gyangle = S.gyread();
     	//System.out.println(T.gdt(1));
     	if(T.gdt(1) >= .2 && IM.getAdamButton()){
 			T.sc(1);
 			IM.togAdamButton();
 		}
-    	if(IM.getwat(4)){
-    		S.gyreset();
-    	}
     	//MC.driveomni(IM.adjustGetAngle(gyangle));
     	MC.driveomni(IM.getAxisValue(),IM.getwat(8));
     	//System.out.println("Closed loop?: " + MC.comp.getClosedLoopControl());

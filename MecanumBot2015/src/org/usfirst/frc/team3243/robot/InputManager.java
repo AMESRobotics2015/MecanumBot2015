@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class InputManager{
 		static double[] axis = new double [4];//holds the input value from our left/right controllers
 		static double[] solenoidInput = new double [2];//holds input for the solenoid motors
-		static double[] gameaxis = new double [2];
+		static double[] gameaxis = new double [1];
 		protected static Joystick ps2controller;//our controller
 		protected static Joystick gameController;
 		protected static JoystickButton record;

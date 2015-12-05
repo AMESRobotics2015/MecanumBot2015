@@ -131,7 +131,8 @@ public void driveomni(double[] driv, boolean sprint){
 	}
 	public boolean Elevate(double[] elev){
 		elevator.set(elev[0]);//Raises/lowers the elevator.		
-			if(elev[0] <= -.1 | elev[0] >= .1){
+		/*	
+		if(elev[0] <= -.1 | elev[0] >= .1){
 				//System.out.println("Elevating");
 				return true;
 				
@@ -140,7 +141,7 @@ public void driveomni(double[] driv, boolean sprint){
 				//System.out.println("False");
 				return false;
 			}
-			
+			*/
 		//System.out.println("False");
 		return false;
 	}
