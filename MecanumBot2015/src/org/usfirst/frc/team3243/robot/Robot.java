@@ -73,13 +73,13 @@ public class Robot extends IterativeRobot {
     	double[] test = new double [4];
     	test[0] = 0.9;
     	test[1] = 0.9;
-    	test[2] = 0.9;
-    	test[3] = 0.9;
+    	test[2] = -0.9;
+    	test[3] = -0.9;
     	calibrate.start();
     	do{
     	MC.move(test);
     	}
-    	while(calibrate.get()<5);
+    	while(calibrate.get()<3);
     	calibrate.reset();
     }
     
