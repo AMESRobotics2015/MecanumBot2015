@@ -12,7 +12,7 @@ public class MotorControl {
 	protected static  Solenoid solenoid1, solenoid2;//solenoid motors
 	protected static Talon topleft, bottomright, bottomleft, topright;
 	protected static Compressor comp;
-	String Motto = "Mark is Dumb";
+	public Timer calibrate = new Timer();
 	//static double[] drive= new double[4];
 	
 	public MotorControl(){
@@ -159,4 +159,57 @@ public void driveomni(double[] driv, boolean sprint){
 	public void forcestart(){
 		comp.start();
 	}
+	
+	public void CalibrateDrive()
+    {
+    	double[] test = new double [4];
+    	test[0] = 0.9;
+    	test[1] = 0.9;
+    	test[2] = -0.9;
+    	test[3] = -0.9;
+    	double[] stop = new double [4];
+    	stop[0] = 0;
+    	stop[1] = 0;
+    	stop[2] = 0;
+    	stop[3] = 0;
+    	calibrate.start();
+    	do{
+    	move(test);
+    	}
+    	while(calibrate.get()<1.5);
+    	calibrate.reset();
+    	calibrate.start();
+    	while(calibrate.get()<60)
+    	move(stop);
+    }
+    
+    //param:a is distance in feet.
+    public void moveDistance(double a){
+    	double[] test = new double [4];
+    	test[0] = 0.9;
+    	test[1] = 0.9;
+    	test[2] = -0.9;
+    	test[3] = -0.9;
+    	double[] stop = new double [4];
+    	stop[0] = 0;
+    	stop[1] = 0;
+    	stop[2] = 0;
+    	stop[3] = 0;
+    	double mVelocity = velocity;
+    	//measured in ft
+    	double estimatedTime = a / mVelocity;
+    	calibrate.start();
+    	do{
+    	MC.move(test);
+    	}
+    	while(calibrate.get()<estimatedTime);
+    	MC.move(stop);
+    	calibrate.reset();
+    	calibrate.start();
+    	while(calibrate.get()<60)
+    	MC.move(stop);
+    	
+    	
+    }
+
 }

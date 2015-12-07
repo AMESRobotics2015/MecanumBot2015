@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 	private static MasterTimer T;
 	private static Reader RE;
 	private static RobotMap RM;
-	public Timer calibrate = new Timer();
+	
 	//units in feet per Tarun's second
 	public double velocity = 6.85;
 
@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	moveDistance(10);
+    	MC.moveDistance(10);
     	//CalibrateDrive();    	
     	/*
     	if(!Recorder.isRead){
@@ -67,58 +67,7 @@ public class Robot extends IterativeRobot {
     	*/
     }
     
-    public void CalibrateDrive()
-    {
-    	double[] test = new double [4];
-    	test[0] = 0.9;
-    	test[1] = 0.9;
-    	test[2] = -0.9;
-    	test[3] = -0.9;
-    	double[] stop = new double [4];
-    	stop[0] = 0;
-    	stop[1] = 0;
-    	stop[2] = 0;
-    	stop[3] = 0;
-    	calibrate.start();
-    	do{
-    	MC.move(test);
-    	}
-    	while(calibrate.get()<1.5);
-    	calibrate.reset();
-    	calibrate.start();
-    	while(calibrate.get()<60)
-    	MC.move(stop);
-    }
     
-    //param:a is distance in feet.
-    public void moveDistance(double a){
-    	double[] test = new double [4];
-    	test[0] = 0.9;
-    	test[1] = 0.9;
-    	test[2] = -0.9;
-    	test[3] = -0.9;
-    	double[] stop = new double [4];
-    	stop[0] = 0;
-    	stop[1] = 0;
-    	stop[2] = 0;
-    	stop[3] = 0;
-    	double mVelocity = velocity;
-    	//measured in ft
-    	double estimatedTime = a / mVelocity;
-    	calibrate.start();
-    	do{
-    	MC.move(test);
-    	}
-    	while(calibrate.get()<estimatedTime);
-    	MC.move(stop);
-    	calibrate.reset();
-    	calibrate.start();
-    	while(calibrate.get()<60)
-    	MC.move(stop);
-    	
-    	
-    }
-
     /**
      * This function is called periodically during operator control
      */
