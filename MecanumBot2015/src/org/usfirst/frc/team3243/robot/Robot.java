@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class Robot extends IterativeRobot {
     /**
-     * This function is run when the robot is first started up and should be
+     * This function is run when the robot is first star1ted up and should be
      * used for any initialization code.
      */
 	
