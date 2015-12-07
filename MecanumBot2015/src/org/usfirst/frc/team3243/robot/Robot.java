@@ -30,8 +30,7 @@ public class Robot extends IterativeRobot {
 	private static Reader RE;
 	private static RobotMap RM;
 	
-	//units in feet per Tarun's second
-	public double velocity = 6.85;
+	
 
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager

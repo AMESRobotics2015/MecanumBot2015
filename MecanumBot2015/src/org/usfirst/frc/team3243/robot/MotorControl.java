@@ -15,6 +15,9 @@ public class MotorControl {
 	public Timer calibrate = new Timer();
 	//static double[] drive= new double[4];
 	
+	//units in feet per Tarun's second
+	public double velocity = 6.85;
+	
 	public MotorControl(){
 		
 	//	drv = new RobotDrive(0,1,2,3);//constructor 
@@ -200,14 +203,14 @@ public void driveomni(double[] driv, boolean sprint){
     	double estimatedTime = a / mVelocity;
     	calibrate.start();
     	do{
-    	MC.move(test);
+    	move(test);
     	}
     	while(calibrate.get()<estimatedTime);
-    	MC.move(stop);
+    	move(stop);
     	calibrate.reset();
     	calibrate.start();
     	while(calibrate.get()<60)
-    	MC.move(stop);
+    	move(stop);
     	
     	
     }
