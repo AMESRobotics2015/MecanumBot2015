@@ -12,7 +12,9 @@ public class MotorControl {
 	protected static  Solenoid solenoid1, solenoid2;//solenoid motors
 	protected static Talon topleft, bottomright, bottomleft, topright;
 	protected static Compressor comp;
+	public Timer Master = new Timer();
 	public Timer calibrate = new Timer();
+	public Timer ElevatorCalibrate = new Timer();
 	//static double[] drive= new double[4];
 	
 	//units in feet per Tarun's second
@@ -147,6 +149,16 @@ public void driveomni(double[] driv, boolean sprint){
 			*/
 		//System.out.println("False");
 		return false;
+	}
+	public void ElevateFor(double time, double direction)
+	{
+		ElevatorCalibrate.start();
+		do {
+			elevator.set(direction);
+		}
+		while (ElevatorCalibrate.get() < time);
+		ElevatorCalibrate.stop();
+		ElevatorCalibrate.reset();
 	}
 	public void Compress(boolean estop){
 		//System.out.println("Preassure switch:" + comp.getPressureSwitchValue());
