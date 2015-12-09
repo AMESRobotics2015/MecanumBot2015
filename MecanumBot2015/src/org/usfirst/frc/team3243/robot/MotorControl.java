@@ -16,8 +16,8 @@ public class MotorControl {
 	//static double[] drive= new double[4];
 	
 	//units in feet per Tarun's second
-	public double velocity = 6.85;
-	
+	public double velocity = 6.6;
+	public double angularVelocity = 2.5;
 	public MotorControl(){
 		
 	//	drv = new RobotDrive(0,1,2,3);//constructor 
@@ -207,12 +207,42 @@ public void driveomni(double[] driv, boolean sprint){
     	}
     	while(calibrate.get()<estimatedTime);
     	move(stop);
+    	do{
+    	move(stop);
+    	}while(calibrate.get()<10);
+    	calibrate.reset();
+    }
+    
+    //param:a is degrees. Made by collin, Josh and Cole
+    public void moveDegree(double a){
+    	double[] test = new double [4];
+    	test[0] = 0.9;
+    	test[1] = 0.9;
+    	test[2] = 0.9;
+    	test[3] = 0.9;
+    	double[] stop = new double [4];
+    	stop[0] = 0;
+    	stop[1] = 0;
+    	stop[2] = 0;
+    	stop[3] = 0;
+    	double mAngularVelocity = angularVelocity;
+    	//measured in ft/s, where 11 is the circumfrence of the robot
+    	a = (a/360) * 11;
+    	double estimatedTime = a / mAngularVelocity;
+    	calibrate.start();
+    	do{
+    	move(test);
+    	}
+    	while(calibrate.get()<estimatedTime);
+    	move(stop);
     	calibrate.reset();
     	calibrate.start();
-    	while(calibrate.get()<60)
-    	move(stop);
-    	
-    	
+    	do{
+    		move(stop);
+    	}while(calibrate.get()<3);
+    	calibrate.reset();
     }
+    
+    
 
 }

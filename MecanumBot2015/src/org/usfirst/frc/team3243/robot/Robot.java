@@ -54,7 +54,35 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	MC.moveDegree(360);
+    	/**MC.moveDistance(10);
+    	MC.moveDegree(90);
     	MC.moveDistance(10);
+    	MC.moveDegree(-90);
+    	//To do: fire
+    	MC.moveDegree(-90);
+    	MC.moveDistance(10);
+    	MC.moveDegree(-90);
+    	MC.moveDistance(10);
+    	//To do: reload
+    	MC.moveDegree(-90);
+    	MC.moveDistance(10);
+    	MC.moveDegree(-90);
+    	//Fire
+    	MC.moveDegree(-90);
+    	MC.moveDistance(10);
+    	//Reload
+    	MC.moveDegree(-90);
+    	MC.moveDistance(10);
+    	MC.moveDistance(-90);
+    	MC.moveDistance(10);
+    	MC.moveDistance(-90);
+    	//Fire
+    	MC.moveDistance(10);
+    	MC.moveDegree(-90);
+    	MC.moveDistance(10);
+    	//Done**/
+    	
     	//CalibrateDrive();    	
     	/*
     	if(!Recorder.isRead){
