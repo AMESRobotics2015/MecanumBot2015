@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
     	test[1] = 0.9;
     	test[2] = 0.9;
     	test[3] = 0.9;
-    	MC = new MotorControl();//MC is the master instance of m
+    	MC = new MotorControl();//MC is the master instance of motorcontrol
     	R = new Recorder();
     	WR = new Writer();
     	T = new MasterTimer();
@@ -54,7 +54,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	MC.moveDegree(360);
+    	//MC.moveDegree(360);
     	/**MC.moveDistance(10);
     	MC.moveDegree(90);
     	MC.moveDistance(10);
@@ -82,7 +82,7 @@ public class Robot extends IterativeRobot {
     	MC.moveDegree(-90);
     	MC.moveDistance(10);
     	//Done**/
-    	
+    	MC.CompressorCheck();
     	//CalibrateDrive();    	
     	/*
     	if(!Recorder.isRead){

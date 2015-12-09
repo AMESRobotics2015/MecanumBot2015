@@ -158,7 +158,15 @@ public void driveomni(double[] driv, boolean sprint){
 			System.out.println("Compstop");
 			comp.stop();
 	}
+		
 }
+	public void CompressorCheck()
+	{
+		if (!comp.getPressureSwitchValue())
+		{
+			comp.stop();
+		}
+	}
 	public void forcestart(){
 		comp.start();
 	}
