@@ -262,7 +262,97 @@ public void driveomni(double[] driv, boolean sprint){
     	}while(calibrate.get()<3);
     	calibrate.reset();
     }
-    
+public void Move(double distance, double type){
+    	
+    	double[] test = new double [4];
+    	test[0] = 0.9;
+    	test[1] = 0.9;
+    	test[2] = -0.9;
+    	test[3] = -0.9;
+    	
+    	double[] stop = new double [4];
+    	stop[0] = 0;
+    	stop[1] = 0;
+    	stop[2] = 0;
+    	stop[3] = 0;
+    	
+    	if(distance > 0 && type == velocity)
+    	{
+    		test = new double [4];
+        	test[0] = 0.9;
+        	test[1] = 0.9;
+        	test[2] = -0.9;
+        	test[3] = -0.9;
+    	}
+    	
+    	else if(distance < 0 && type == velocity)
+    	{
+    		test = new double [4];
+        	test[0] = -0.9;
+        	test[1] = -0.9;
+        	test[2] = 0.9;
+        	test[3] = 0.9;
+    	}
+    	
+    	//clockwise
+    	else if(distance > 0 && type == angularVelocity)
+    	{
+    		test = new double [4];
+        	test[0] = 0.9;
+        	test[1] = 0.9;
+        	test[2] = 0.9;
+        	test[3] = 0.9;
+    	}
+    	
+    	else if(distance < 0 && type == angularVelocity)
+    	{
+    		test = new double [4];
+        	test[0] = -0.9;
+        	test[1] = -0.9;
+        	test[2] = -0.9;
+        	test[3] = -0.9;
+    	}
+    	
+    	else{
+    		test = new double [4];
+    		test[0] = 0;
+        	test[1] = 0;
+        	test[2] = 0;
+        	test[3] = 0;
+    	}
+    	
+    	//convert degrees
+    	if( type == angularVelocity){
+        	
+        	distance = (distance/360) * 11;
+    	}
+    	
+    	System.out.println(test[0]);
+    	
+    	/**double estimatedTime = distance / type;
+
+    	calibrate.start();
+    	do{
+    	move(test);
+    	}
+    	while(calibrate.get()<estimatedTime);
+    	move(stop);
+    	calibrate.reset();
+    	calibrate.start();
+    	do{
+    		move(stop);
+    	}while(calibrate.get()<3);
+    	calibrate.reset();
+    	
+    	**/
+    	
+    	topleft.set(1);
+		topright.set(1);
+		bottomright.set(-1);
+		bottomleft.set(-1);
+
+    	
+    }
     
 
 }
