@@ -34,11 +34,6 @@ public class Robot extends IterativeRobot {
 
     public void robotInit() {
     	IM = new InputManager();//IM is the master instance of input manager
-    	double[] test = new double [4];
-    	test[0] = 0.9;
-    	test[1] = 0.9;
-    	test[2] = 0.9;
-    	test[3] = 0.9;
     	MC = new MotorControl();//MC is the master instance of motorcontrol
     	R = new Recorder();
     	WR = new Writer();
@@ -48,12 +43,16 @@ public class Robot extends IterativeRobot {
     	RE = new Reader();
     	//MC.forcestart();
     	RM = new RobotMap();
+    	
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	double velocity = 6.6;
+    	double angularVelocity = 2.5;
+    	MC.Move(3000, angularVelocity);
     	//MC.moveDegree(360);
     	/**MC.moveDistance(10);
     	MC.moveDegree(90);

@@ -265,20 +265,17 @@ public void driveomni(double[] driv, boolean sprint){
 public void Move(double distance, double type){
     	
     	double[] test = new double [4];
-    	test[0] = 0.9;
-    	test[1] = 0.9;
-    	test[2] = -0.9;
-    	test[3] = -0.9;
-    	
+    
     	double[] stop = new double [4];
     	stop[0] = 0;
     	stop[1] = 0;
     	stop[2] = 0;
     	stop[3] = 0;
     	
+    	test = stop; 
+    	
     	if(distance > 0 && type == velocity)
-    	{
-    		test = new double [4];
+    	{//Moves the roboot forward with the input of distance being positive and type suggest we want to drive
         	test[0] = 0.9;
         	test[1] = 0.9;
         	test[2] = -0.9;
@@ -286,8 +283,7 @@ public void Move(double distance, double type){
     	}
     	
     	else if(distance < 0 && type == velocity)
-    	{
-    		test = new double [4];
+    	{//Moves the roboot backward with the input of distance being negative and type suggest we want to drive
         	test[0] = -0.9;
         	test[1] = -0.9;
         	test[2] = 0.9;
@@ -296,8 +292,7 @@ public void Move(double distance, double type){
     	
     	//clockwise
     	else if(distance > 0 && type == angularVelocity)
-    	{
-    		test = new double [4];
+    	{//Rotates robot clockwise the input of distance being positive and type suggest we want to rotate 
         	test[0] = 0.9;
         	test[1] = 0.9;
         	test[2] = 0.9;
@@ -305,8 +300,7 @@ public void Move(double distance, double type){
     	}
     	
     	else if(distance < 0 && type == angularVelocity)
-    	{
-    		test = new double [4];
+    	{//Rotates robot counter-clockwise the input of distance being positive and type suggest we want to rotate 
         	test[0] = -0.9;
         	test[1] = -0.9;
         	test[2] = -0.9;
@@ -314,45 +308,33 @@ public void Move(double distance, double type){
     	}
     	
     	else{
-    		test = new double [4];
-    		test[0] = 0;
-        	test[1] = 0;
-        	test[2] = 0;
-        	test[3] = 0;
+    		test = stop;
     	}
     	
     	//convert degrees
-    	if( type == angularVelocity){
-        	
+    	if( type == angularVelocity)
+    	{
         	distance = (distance/360) * 11;
     	}
     	
-    	System.out.println(test[0]);
-    	
-    	/**double estimatedTime = distance / type;
-
-    	calibrate.start();
-    	do{
-    	move(test);
+    	//System.out.println(test[0]);
+    		double estimatedTime = distance / type;
+    		
+        	calibrate.start();
+        	do{
+        	move(test);
+        	}
+        	while(calibrate.get()<estimatedTime);
+        	move(stop);
+        	calibrate.reset();
+        	calibrate.start();
+        	do{
+        		move(stop);
+        	}while(calibrate.get()<2);
+        	calibrate.reset();
+        	
     	}
-    	while(calibrate.get()<estimatedTime);
-    	move(stop);
-    	calibrate.reset();
-    	calibrate.start();
-    	do{
-    		move(stop);
-    	}while(calibrate.get()<3);
-    	calibrate.reset();
     	
-    	**/
-    	
-    	topleft.set(1);
-		topright.set(1);
-		bottomright.set(-1);
-		bottomleft.set(-1);
-
-    	
-    }
     
 
 }
